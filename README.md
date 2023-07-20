@@ -52,6 +52,10 @@ If everything is set up _correctly_, you should see your new app running in your
 
 This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
 
+## Prototype
+
+Check the [Figma](https://www.figma.com/file/9suzZU0Ua9oGhaKkJHyq2C/TVSync?type=design&node-id=1:23&mode=design&t=klcIIp11l7kfrw8s-1) prototype.
+
 ## Testing
 
 To run the unit tests, use the command: `npm test`
