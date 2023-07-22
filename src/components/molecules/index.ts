@@ -1,2 +1,3 @@
 export * from './Header';
-export * from './SeriesInformations';
+export * from './SeriesInformationsContent';
+export * from './OptionsTabNavigator';

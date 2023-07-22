@@ -8,7 +8,8 @@ const translations: TranslationKey = {
   [TranslationKeyEnum.SearchTitle]: 'Busca',
   [TranslationKeyEnum.SeriesDetailsTitle]: 'Detalhes da série',
   [TranslationKeyEnum.SettingTitle]: 'Configurações',
-  [TranslationKeyEnum.SeriesInformationsMinutes]: 'minutos',
+  [TranslationKeyEnum.SeriesInformationsContentMinutes]: 'minutos',
+  [TranslationKeyEnum.SeriesInformationsContentEpisodes]: 'episódios',
 };
 
 export default { translation: translations };

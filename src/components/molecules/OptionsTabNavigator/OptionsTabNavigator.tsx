@@ -20,11 +20,13 @@ const OptionsTabNavigator: FC<OptionsTabNavigatorProps> = ({
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <Div row justifyContent="space-between">
           {tabs.map(tab => (
-            <TouchableOpacity onPress={() => onTabPress(tab.key)}>
+            <TouchableOpacity
+              activeOpacity={0.95}
+              key={tab.key}
+              onPress={() => onTabPress(tab.key)}>
               <Text
                 px="xl"
                 py="md"
-                key={tab.key}
                 variant="medium"
                 {...getFontWeight('bold')}
                 color={
