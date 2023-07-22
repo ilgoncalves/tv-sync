@@ -7,3 +7,4 @@ export * from './PersonDetail';
 export * from './RequestEmail';
 export * from './SeriesDetails';
 export * from './Settings';
+export * from './SplashScreen';
