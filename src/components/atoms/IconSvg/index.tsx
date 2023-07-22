@@ -4,7 +4,6 @@ import { SvgProps } from 'react-native-svg';
 import { IColors } from '~/theme/types';
 
 import { Icons } from '~/assets/svgs';
-import { FC } from 'react';
 
 export type IconName = keyof typeof Icons;
 
@@ -36,6 +35,7 @@ const IconSvg = ({
   color = color ? theme?.colors?.[color] ?? color : color;
   fill = fill ? theme?.colors?.[fill] ?? fill : fill;
 
+  // @ts-ignore
   const { width, height } = SvgComponent({})?.props;
 
   return (
