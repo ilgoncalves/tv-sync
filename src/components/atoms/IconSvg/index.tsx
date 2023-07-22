@@ -27,7 +27,7 @@ const IconSvg = ({
   onPress,
   label,
   color,
-  fill,
+  fill = 'transparent',
   stroke,
   ...props
 }: IconSvgProps) => {
