@@ -13,6 +13,7 @@ import Menu from './menu.svg';
 import Search from './search.svg';
 import Ring from './ring.svg';
 import Star from './star.svg';
+import Popcorn from './popcorn.svg';
 import UncheckedBox from './unchecked-box.svg';
 import Settings from './settings.svg';
 
@@ -20,6 +21,7 @@ export default {
   chevronDown: ChevronDown,
   chevronRight: ChevronRight,
   chevronLeft: ChevronLeft,
+  popcorn: Popcorn,
   favorite: Favorite,
   filter: Filter,
   fingerPrint: FingerPrint,
