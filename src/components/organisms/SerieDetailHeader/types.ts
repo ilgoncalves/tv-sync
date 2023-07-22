@@ -1,12 +1,11 @@
 import { Animated } from 'react-native';
-import { SeriesInformationsProps } from '~/components/molecules';
-import { OptionsTabNavigatorProps } from '~/components/molecules/OptionsTabNavigator';
+import {
+  OptionsTabNavigatorProps,
+  SeriesInformationsContentProps,
+} from '~/components/molecules';
 
 export interface SerieDetailHeaderProps {
-  serieInfo: Omit<
-    SeriesInformationsProps,
-    'onToggleFavorite' | 'tabs' | 'animatedValue'
-  >;
+  serieInfo: Omit<SeriesInformationsContentProps, 'onToggleFavorite'>;
   tabs: OptionsTabNavigatorProps;
   offset: Animated.Value;
 }

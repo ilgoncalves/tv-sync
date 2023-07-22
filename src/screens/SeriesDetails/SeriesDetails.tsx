@@ -7,7 +7,8 @@ import { Button, Div, Text } from 'react-native-magnus';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { DetailsStackParamList } from '~/navigation/types';
 import { SerieDetailHeader } from '~/components/organisms';
-import { Tab } from '~/components/molecules/OptionsTabNavigator';
+import { Tab } from '~/components/molecules';
+
 import { Animated, ScrollView } from 'react-native';
 
 const SeriesDetails: FC<SeriesDetailsProps> = ({}) => {
@@ -36,6 +37,17 @@ const SeriesDetails: FC<SeriesDetailsProps> = ({}) => {
     });
   };
 
+  const seriesInfo = {
+    imageUrl:
+      'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/d7590f135861167.61ef6fb49f8e4.jpg',
+    title: 'Peaky Blinders',
+    rating: '8.1',
+    minutes: 45,
+    genres: ['Action', 'Adventure', 'Thriller'],
+    episodes: 20,
+    isFavorite: true,
+  };
+
   return (
     <MainTemplate
       backButton
@@ -49,16 +61,7 @@ const SeriesDetails: FC<SeriesDetailsProps> = ({}) => {
             onTabPress: handleTabPress,
             tabs,
           }}
-          serieInfo={{
-            imageUrl:
-              'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/d7590f135861167.61ef6fb49f8e4.jpg',
-            title: 'Peaky Blinders',
-            rating: '8.1',
-            minutes: 45,
-            genres: ['Action', 'Adventure', 'Thriller'],
-            episodes: 20,
-            isFavorite: true,
-          }}
+          serieInfo={seriesInfo}
         />
 
         <ScrollView
