@@ -15,6 +15,7 @@ export interface IconSvgProps extends SvgProps {
   label?: string;
   color?: IColors | (string & {});
   fill?: IColors | (string & {});
+  stroke?: IColors | (string & {});
   onPress?: (e?: GestureResponderEvent) => void;
 }
 
@@ -27,6 +28,7 @@ const IconSvg = ({
   label,
   color,
   fill,
+  stroke,
   ...props
 }: IconSvgProps) => {
   const SvgComponent = Icons[name];
@@ -34,6 +36,7 @@ const IconSvg = ({
 
   color = color ? theme?.colors?.[color] ?? color : color;
   fill = fill ? theme?.colors?.[fill] ?? fill : fill;
+  stroke = stroke ? theme?.colors?.[stroke] ?? stroke : stroke;
 
   // @ts-ignore
   const { width, height } = SvgComponent({})?.props;
@@ -46,6 +49,7 @@ const IconSvg = ({
           height={height * (size / 10)}
           {...props}
           color={color}
+          stroke={stroke}
           fill={fill}
         />
         {label && (

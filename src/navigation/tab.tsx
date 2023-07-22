@@ -13,7 +13,8 @@ export const Tab = ({ icon, size }: TabProps): BottomTabNavigationOptions => {
       <IconSvg
         size={size}
         name={icon}
-        color={focused ? 'primary.teal' : 'primary.white'}
+        fill="transparent"
+        stroke={focused ? 'primary.pink' : 'secondary.pinkLight'}
       />
     ),
   };
