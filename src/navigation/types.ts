@@ -22,8 +22,8 @@ export type HomeTabScreenProps<T extends keyof HomeTabsParamList> =
   >;
 
 export type DetailsStackParamList = {
-  '/person-detail': undefined;
-  '/series-detail': undefined;
+  '/person-detail': { personId: string };
+  '/series-detail': { serieId: string };
 };
 
 export type AuthStackParamList = {

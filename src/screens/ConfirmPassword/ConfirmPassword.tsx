@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Div } from 'react-native-magnus';
 import { ConfirmPasswordProps } from './types';
 
