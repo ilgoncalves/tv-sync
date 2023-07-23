@@ -10,6 +10,7 @@ const translations: TranslationKey = {
   [TranslationKeyEnum.SettingTitle]: 'Settings',
   [TranslationKeyEnum.SeriesInformationsContentMinutes]: 'minutes',
   [TranslationKeyEnum.SeriesInformationsContentEpisodes]: 'episodes',
+  [TranslationKeyEnum.CastAndCrewTitle]: 'Cast & Crew',
 };
 
 export default { translation: translations };

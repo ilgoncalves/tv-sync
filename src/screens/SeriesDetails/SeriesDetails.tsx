@@ -1,12 +1,17 @@
-import { FC, useRef, useState } from 'react';
+import { FC, ReactNode, useRef, useState } from 'react';
 import { SeriesDetailsProps } from './types';
 import { useTranslation } from 'react-i18next';
 import { MainTemplate } from '~/components/templates';
 import { TranslationsKeys } from '~/i18n';
-import { Button, Div, Text } from 'react-native-magnus';
+import { Div } from 'react-native-magnus';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { DetailsStackParamList } from '~/navigation/types';
-import { SerieDetailHeader } from '~/components/organisms';
+import {
+  SerieDetailHeader,
+  SeriesEpisodesTab,
+  SeriesRecommendationsTab,
+  SeriesSynopsisTab,
+} from '~/components/organisms';
 import { Tab } from '~/components/molecules';
 
 import { Animated, ScrollView } from 'react-native';
@@ -18,7 +23,7 @@ const SeriesDetails: FC<SeriesDetailsProps> = ({}) => {
   const { params } =
     useRoute<RouteProp<DetailsStackParamList, '/series-detail'>>();
 
-  const [activeTabKey, setActiveTabKey] = useState('tab1');
+  const [activeTabKey, setActiveTabKey] = useState('synopsis');
 
   const handleTabPress = (tabKey: string) => {
     setActiveTabKey(tabKey);
@@ -30,13 +35,6 @@ const SeriesDetails: FC<SeriesDetailsProps> = ({}) => {
     { key: 'recommendations', value: 'Recommendations' },
   ];
 
-  const goToPersonDetails = () => {
-    navigate('details', {
-      screen: '/person-detail',
-      params: { personId: Math.random().toString() },
-    });
-  };
-
   const seriesInfo = {
     imageUrl:
       'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/d7590f135861167.61ef6fb49f8e4.jpg',
@@ -46,6 +44,49 @@ const SeriesDetails: FC<SeriesDetailsProps> = ({}) => {
     genres: ['Action', 'Adventure', 'Thriller'],
     episodes: 20,
     isFavorite: true,
+    summary:
+      'An epic gangster drama set in the lawless streets of 1920s Birmingham.',
+    cast: [
+      {
+        name: 'Actor One',
+        imageURL: 'https://via.placeholder.com/150',
+      },
+      {
+        name: 'Actor Two',
+        imageURL: 'https://via.placeholder.com/150',
+      },
+      {
+        name: 'Actor Three',
+        imageURL: 'https://via.placeholder.com/150',
+      },
+      {
+        name: 'Actor Three',
+        imageURL: 'https://via.placeholder.com/150',
+      },
+      {
+        name: 'Actor Three',
+        imageURL: 'https://via.placeholder.com/150',
+      },
+      {
+        name: 'Actor Three',
+        imageURL: 'https://via.placeholder.com/150',
+      },
+    ],
+  };
+
+  const tabsContent: Record<string, ReactNode> = {
+    synopsis: (
+      <SeriesSynopsisTab
+        director={{
+          name: 'Steve Knight',
+          responsibility: 'Screenwriter, Executive Producer, Creator ',
+        }}
+        synopsis={seriesInfo.summary}
+        cast={seriesInfo.cast}
+      />
+    ),
+    episodes: <SeriesEpisodesTab />,
+    recommendations: <SeriesRecommendationsTab />,
   };
 
   return (
@@ -69,17 +110,14 @@ const SeriesDetails: FC<SeriesDetailsProps> = ({}) => {
             alignItems: 'center',
           }}
           showsVerticalScrollIndicator={false}
-          scrollEventThrottle={0.0001}
+          scrollEventThrottle={5}
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { y: offset } } }],
             {
               useNativeDriver: false,
             },
           )}>
-          <Text>{params.serieId}</Text>
-          <Button mb="sm" onPress={goToPersonDetails} variant="solid">
-            Go to Person Details
-          </Button>
+          {tabsContent[activeTabKey]}
         </ScrollView>
       </Div>
     </MainTemplate>
