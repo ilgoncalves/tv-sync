@@ -6,7 +6,7 @@ import Filter from './filter.svg';
 import FingerPrint from './fingerprint-circle.svg';
 import Home from './home.svg';
 import Key from './key.svg';
-import LenguageCircle from './language-circle.svg';
+import LanguageTranslator from './languageTranslator.svg';
 import List from './list.svg';
 import Logo from './logo.svg';
 import Menu from './menu.svg';
@@ -28,7 +28,7 @@ export default {
   home: Home,
   key: Key,
   list: List,
-  lenguageCircle: LenguageCircle,
+  languageTranslator: LanguageTranslator,
   logo: Logo,
   menu: Menu,
   search: Search,
