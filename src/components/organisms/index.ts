@@ -4,3 +4,6 @@ export * from './SeriesEpisodesTab';
 export * from './SeriesRecommendationsTab';
 export * from './SeriesSynopsisTab';
 export * from './EpisodesCollapse';
+export * from './FavoritesList';
+export * from './GenderList';
+export * from './PeopleList';
