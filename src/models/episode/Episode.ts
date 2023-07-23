@@ -16,7 +16,7 @@ export class Episode implements IEpisode {
   private _airdate: string;
   private _airtime: string;
   private _airstamp: string;
-  private _runtime: number;
+  private _runtime?: number | undefined;
   private _rating: Rating;
   private _image: Image;
   private _summary: string;
@@ -75,7 +75,7 @@ export class Episode implements IEpisode {
     return this._airstamp;
   }
 
-  get runtime(): number {
+  get runtime(): number | undefined {
     return this._runtime;
   }
 

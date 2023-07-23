@@ -6,6 +6,7 @@ import {
   SerieInfo as ShowInfoUi,
 } from '~/components/organisms';
 import { Episode as EpisodeUi } from '~/components/molecules';
+import { Cast } from '../cast';
 
 export class Show implements IShow {
   private _id: number;
@@ -19,6 +20,7 @@ export class Show implements IShow {
   private _summary?: string;
 
   private _episodes?: Episode[];
+  private _cast?: Cast[];
 
   private constructor({
     id,
@@ -30,7 +32,6 @@ export class Show implements IShow {
     rating,
     image,
     summary,
-    episodes,
   }: IShowParams) {
     this._id = id;
     this._name = name;
@@ -41,8 +42,12 @@ export class Show implements IShow {
     this._rating = rating;
     this._image = image;
     this._summary = summary;
-    this._episodes = episodes;
   }
+
+  runtime?: number | undefined;
+  premiered?: string | undefined;
+  rating?: IRating | undefined;
+  episodes?: Episode[] | undefined;
 
   get id(): number {
     return this._id;
@@ -69,6 +74,10 @@ export class Show implements IShow {
     this._episodes = episodes;
   }
 
+  public addCast(cast: Cast[]): void {
+    this._cast = cast;
+  }
+
   public getSeasonAmount() {
     if (!this._episodes || this._episodes?.length <= 0) {
       return 0;
@@ -84,7 +93,7 @@ export class Show implements IShow {
           .filter(episode => episode.season === currentSeason)
           .map(episode => ({
             description: episode.summary,
-            duration: episode.airtime,
+            duration: episode.runtime?.toString(),
             images: [],
             season: episode.season,
             title: episode.name,
@@ -109,32 +118,12 @@ export class Show implements IShow {
   }
 
   public getCast(): PersonInfoUi[] {
-    return [
-      {
-        name: 'Actor One',
-        imageURL: 'https://via.placeholder.com/150',
-      },
-      {
-        name: 'Actor Two',
-        imageURL: 'https://via.placeholder.com/150',
-      },
-      {
-        name: 'Actor Three',
-        imageURL: 'https://via.placeholder.com/150',
-      },
-      {
-        name: 'Actor Three',
-        imageURL: 'https://via.placeholder.com/150',
-      },
-      {
-        name: 'Actor Three',
-        imageURL: 'https://via.placeholder.com/150',
-      },
-      {
-        name: 'Actor Three',
-        imageURL: 'https://via.placeholder.com/150',
-      },
-    ];
+    return this._cast
+      ? this._cast?.map(castMember => ({
+          imageURL: castMember.character.image?.medium,
+          name: castMember.person.name,
+        }))
+      : [];
   }
 
   static fromApiResponse(apiResponse: ShowApi): Show {

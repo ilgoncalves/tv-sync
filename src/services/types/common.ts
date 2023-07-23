@@ -85,7 +85,7 @@ export interface Episode {
   airdate: string;
   airtime: string;
   airstamp: string;
-  runtime: number;
+  runtime?: number;
   rating: Rating;
   image: Image;
   summary: string;

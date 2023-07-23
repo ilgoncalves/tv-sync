@@ -1,10 +1,16 @@
-import { Character, Person } from '~/services/types';
+import { Country, Image, PersonLinks } from '~/services/types';
 
 export interface IPersonParams {
-  person: Person;
-  character: Character;
-  self: boolean;
-  voice: boolean;
+  id: number;
+  url: string;
+  name: string;
+  country?: Country;
+  birthday?: string;
+  deathday?: any;
+  gender: string;
+  image: Image;
+  updated: number;
+  _links: PersonLinks;
 }
 
 export interface IPerson extends IPersonParams {}

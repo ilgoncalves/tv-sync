@@ -4,6 +4,7 @@ import { ShowStoreInitialState, ShowStoreState } from './types';
 
 import { ShowService } from '~/services';
 import { Episode, Show } from '~/models';
+import { Cast } from '~/models/cast';
 
 const service = new ShowService();
 
@@ -15,23 +16,30 @@ export const useShowStore = create<ShowStoreState>()(
   devtools(set => ({
     ...initialState,
     getShowInfo: async showId => {
-      set({ currentDetailedShow: null });
-      const rawEpisodes = await service.getEpisodeList(showId);
+      try {
+        set({ currentDetailedShow: null });
 
-      const rawShow = await service.getShowInformation(showId);
-      const rawCast = await service.getShowCast(showId);
+        const [rawEpisodes, rawShow, rawCast] = await Promise.all([
+          service.getEpisodeList(showId),
+          service.getShowInformation(showId),
+          service.getShowCast(showId),
+        ]);
 
-      console.log('rawCast', JSON.stringify(rawCast, undefined, 2));
+        const show = Show.fromApiResponse(rawShow);
 
-      const show = Show.fromApiResponse(rawShow);
+        const showEpisodes = rawEpisodes.map(episode =>
+          Episode.fromApiResponse(episode),
+        );
 
-      const showEpisodes = rawEpisodes.map(episode =>
-        Episode.fromApiResponse(episode),
-      );
+        const showCast = rawCast.map(cast => Cast.fromApiResponse(cast));
 
-      show.addEpisodes(showEpisodes);
+        show.addEpisodes(showEpisodes);
+        show.addCast(showCast);
 
-      set({ currentDetailedShow: show });
+        set({ currentDetailedShow: show });
+      } catch (error) {
+        console.log('Error occurred:', error);
+      }
     },
   })),
 );

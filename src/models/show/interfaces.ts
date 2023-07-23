@@ -4,6 +4,7 @@ import {
   CastMember as PersonInfoUi,
   SerieInfo as ShowInfoUi,
 } from '~/components/organisms';
+import { Cast } from '../cast';
 
 export interface IRating {
   average?: number;
@@ -28,9 +29,10 @@ export interface IShowParams {
 }
 
 export interface IShow extends IShowParams {
-  addEpisodes: (episodes: Episode[]) => void;
-  getSeasonAmount: () => number;
-  getEpisodesUiBySeason: (currentSeason: number) => EpisodeUi[];
-  getShowInfoUi: () => ShowInfoUi;
-  getCast: () => PersonInfoUi[];
+  addEpisodes(episodes: Episode[]): void;
+  addCast(cast: Cast[]): void;
+  getSeasonAmount(): number;
+  getEpisodesUiBySeason(currentSeason: number): EpisodeUi[];
+  getShowInfoUi(): ShowInfoUi;
+  getCast(): PersonInfoUi[];
 }

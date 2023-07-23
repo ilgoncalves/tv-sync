@@ -1,38 +1,81 @@
-import { Person as PersonApi, Character, Cast } from '~/services/types';
+import {
+  Person as PersonApi,
+  Country,
+  Image,
+  PersonLinks,
+} from '~/services/types';
 import { IPerson, IPersonParams } from './interfaces';
 
 export class Person implements IPerson {
-  private _person: PersonApi;
-  private _character: Character;
-  private _self: boolean;
-  private _voice: boolean;
+  private _id: number;
+  private _url: string;
+  private _name: string;
+  private _country?: Country | undefined;
+  private _birthday?: string | undefined;
+  private _deathday?: any;
+  private _gender: string;
+  private _image: Image;
+  private _updated: number;
+  private __links: PersonLinks;
 
-  private constructor({ character, person, self, voice }: IPersonParams) {
-    this._person = person;
-    this._character = character;
-    this._self = self;
-    this._voice = voice;
+  get id() {
+    return this._id;
+  }
+  get url() {
+    return this._url;
+  }
+  get name() {
+    return this._name;
+  }
+  get gender() {
+    return this._gender;
+  }
+  get image() {
+    return this._image;
+  }
+  get updated() {
+    return this._updated;
+  }
+  get _links() {
+    return this.__links;
   }
 
-  get person(): PersonApi {
-    return this._person;
-  }
-  get character(): Character {
-    return this._character;
-  }
-  get self(): boolean {
-    return this._self;
-  }
-  get voice(): boolean {
-    return this._voice;
+  public constructor({
+    id,
+    url,
+    name,
+    country,
+    birthday,
+    deathday,
+    gender,
+    image,
+    updated,
+    _links,
+  }: IPersonParams) {
+    this._id = id;
+    this._url = url;
+    this._name = name;
+    this._country = country;
+    this._birthday = birthday;
+    this._deathday = deathday;
+    this._gender = gender;
+    this._image = image;
+    this._updated = updated;
+    this.__links = _links;
   }
 
-  static fromApiResponse(apiResponse: Cast): Person {
+  static fromApiResponse(apiResponse: PersonApi): Person {
     return new Person({
-      character: apiResponse.character,
-      person: apiResponse.person,
-      self: apiResponse.self,
-      voice: apiResponse.voice,
+      id: apiResponse.id,
+      url: apiResponse.url,
+      name: apiResponse.name,
+      country: apiResponse.country,
+      birthday: apiResponse.birthday,
+      deathday: apiResponse.deathday,
+      gender: apiResponse.gender,
+      image: apiResponse.image,
+      updated: apiResponse.updated,
+      _links: apiResponse._links,
     });
   }
 }
