@@ -1,16 +1,22 @@
-import { SearchShowsResponse } from '~/services/types';
+import { Show as ShowApi } from '~/services/types';
 import { IImage, IRating, IShow, IShowParams } from './interfaces';
+import { Episode } from '../episode';
+import { SerieInfo as ShowInfoUi } from '~/components/organisms';
+import { CastMember } from '~/components/organisms/CastAndCrew';
+import { Episode as EpisodeUi } from '~/components/molecules';
 
 export class Show implements IShow {
   private _id: number;
   private _name: string;
   private _genres: string[];
   private _status: string;
-  private _runtime?: number | undefined;
-  private _premiered?: string | undefined;
-  private _rating?: IRating | undefined;
-  private _image?: IImage | undefined;
-  private _summary?: string | undefined;
+  private _runtime?: number;
+  private _premiered?: string;
+  private _rating?: IRating;
+  private _image?: IImage;
+  private _summary?: string;
+
+  private _episodes?: Episode[];
 
   private constructor({
     id,
@@ -22,6 +28,7 @@ export class Show implements IShow {
     rating,
     image,
     summary,
+    episodes,
   }: IShowParams) {
     this._id = id;
     this._name = name;
@@ -32,6 +39,7 @@ export class Show implements IShow {
     this._rating = rating;
     this._image = image;
     this._summary = summary;
+    this._episodes = episodes;
   }
 
   get id(): number {
@@ -51,19 +59,93 @@ export class Show implements IShow {
   get image(): IImage | undefined {
     return this._image;
   }
+  get summary(): string | undefined {
+    return this._summary;
+  }
 
-  static fromApiResponse(apiResponse: SearchShowsResponse): Show {
-    const showData = apiResponse.show;
+  public addEpisodes(episodes: Episode[]) {
+    this._episodes = episodes;
+  }
+
+  public getSeasonAmount() {
+    if (!this._episodes || this._episodes?.length <= 0) {
+      return 0;
+    }
+    const seasonsSet = new Set(this._episodes?.map(episode => episode.season));
+
+    return seasonsSet.size;
+  }
+
+  public getEpisodesUiBySeason(currentSeason: number): EpisodeUi[] {
+    return this._episodes && this._episodes?.length > 0
+      ? this._episodes
+          .filter(episode => episode.season === currentSeason)
+          .map(episode => ({
+            description: episode.summary,
+            duration: episode.airtime,
+            images: [],
+            season: episode.season,
+            title: episode.name,
+          }))
+      : [];
+  }
+
+  public getShowInfoUi(): ShowInfoUi {
+    const minutes = this._episodes?.reduce((acc, el) => {
+      return acc + (el.runtime ?? 0);
+    }, 0);
+
+    return {
+      episodes: this._episodes?.length ?? 0,
+      genres: this._genres,
+      imageUrl: this._image?.original || '',
+      isFavorite: true,
+      minutes: minutes ?? 0,
+      rating: this._rating?.average?.toString() ?? '0',
+      title: this._name,
+    };
+  }
+
+  public getCast(): CastMember[] {
+    return [
+      {
+        name: 'Actor One',
+        imageURL: 'https://via.placeholder.com/150',
+      },
+      {
+        name: 'Actor Two',
+        imageURL: 'https://via.placeholder.com/150',
+      },
+      {
+        name: 'Actor Three',
+        imageURL: 'https://via.placeholder.com/150',
+      },
+      {
+        name: 'Actor Three',
+        imageURL: 'https://via.placeholder.com/150',
+      },
+      {
+        name: 'Actor Three',
+        imageURL: 'https://via.placeholder.com/150',
+      },
+      {
+        name: 'Actor Three',
+        imageURL: 'https://via.placeholder.com/150',
+      },
+    ];
+  }
+
+  static fromApiResponse(apiResponse: ShowApi): Show {
     return new Show({
-      id: showData.id,
-      name: showData.name,
-      genres: showData.genres,
-      status: showData.status,
-      runtime: showData.runtime,
-      premiered: showData.premiered,
-      rating: showData.rating,
-      image: showData.image,
-      summary: showData.summary,
+      id: apiResponse.id,
+      name: apiResponse.name,
+      genres: apiResponse.genres,
+      status: apiResponse.status,
+      runtime: apiResponse.runtime,
+      premiered: apiResponse.premiered,
+      rating: apiResponse.rating,
+      image: apiResponse.image,
+      summary: apiResponse.summary,
     });
   }
 }

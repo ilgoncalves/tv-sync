@@ -32,7 +32,7 @@ const translations: TranslationKey = {
   [TranslationKeyEnum.EpisodeBodyDuration]: '{{duration}} minutes',
   [TranslationKeyEnum.EpisodeBodySeason]: 'Temporada {{season}}',
   [TranslationKeyEnum.EpisodeBodyImagesOfTheScenes]: 'Images of the scenes',
-  [TranslationKeyEnum.SearchResultsFor]: 'Results for {{name}}!',
+  [TranslationKeyEnum.SearchResultsFor]: 'Results for "{{name}}" !',
   [TranslationKeyEnum.SearchNoResultsFound]: 'No results found!',
   [TranslationKeyEnum.SearchPeople]: 'People Search',
   [TranslationKeyEnum.SearchSeriesList]: 'Series List',

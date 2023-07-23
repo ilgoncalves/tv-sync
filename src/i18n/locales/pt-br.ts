@@ -33,7 +33,7 @@ const translations: TranslationKey = {
     'Você quer remover esta série da lista de favoritos?',
 
   [TranslationKeyEnum.SearchTitle]: 'Buscar',
-  [TranslationKeyEnum.SearchResultsFor]: 'Resultados para {{name}}!',
+  [TranslationKeyEnum.SearchResultsFor]: 'Resultados para "{{name}}" !',
   [TranslationKeyEnum.SearchNoResultsFound]: 'Nenhum Resultado Encontrado',
   [TranslationKeyEnum.SearchPeople]: 'Pessoas',
   [TranslationKeyEnum.SearchSeriesList]: 'Lista de Series',

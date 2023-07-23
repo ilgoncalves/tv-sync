@@ -1,3 +1,5 @@
+import { Episode } from '../episode';
+
 export interface IRating {
   average?: number;
 }
@@ -17,6 +19,7 @@ export interface IShowParams {
   rating?: IRating;
   image?: IImage;
   summary?: string;
+  episodes?: Episode[];
 }
 
 export interface IShow extends IShowParams {}
