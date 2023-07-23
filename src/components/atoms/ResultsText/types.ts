@@ -1,3 +1,3 @@
 export interface ResultsTextProps {
-  text: string;
+  text?: string;
 }

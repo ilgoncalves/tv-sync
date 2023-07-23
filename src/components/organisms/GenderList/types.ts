@@ -1,7 +1,7 @@
-import { Serie } from '~/types/series';
+import { Show } from '~/models';
 
 export interface GenderListProps {
-  data: Serie[];
+  data: Show[];
   sectionTitle: string;
   onItemPress: () => void;
 }

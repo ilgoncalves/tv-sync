@@ -12,6 +12,7 @@ export const SearchTabs = () => {
       screenOptions={{
         tabBarStyle: { backgroundColor: 'transparent' },
         tabBarActiveTintColor: colors['primary.pink'],
+        tabBarInactiveTintColor: colors['secondary.textOpaque'],
         tabBarIndicatorStyle: { backgroundColor: colors['primary.pink'] },
         tabBarLabelStyle: {
           fontFamily: fontFamily && fontFamily['700'],

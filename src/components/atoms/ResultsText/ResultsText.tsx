@@ -8,9 +8,11 @@ const ResultsText: FC<ResultsTextProps> = ({ text }) => {
   const { t } = useTranslation();
 
   return (
-    <Text mb={20} variant="large">
-      {t(TranslationsKeys.SearchResultsFor, { name: text })}
-    </Text>
+    text && (
+      <Text mb={20} variant="large">
+        {t(TranslationsKeys.SearchResultsFor, { name: text })}
+      </Text>
+    )
   );
 };
 

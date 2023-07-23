@@ -2,12 +2,12 @@ import React, { FC } from 'react';
 import { FavoritesListProps } from './types';
 import { FlatList } from 'react-native';
 import { FavoriteCard } from '~/components/molecules/FavoriteCard';
-import { Serie } from '~/types/series';
+import { Show } from '~/models';
 
 const FavoritesList: FC<FavoritesListProps> = ({ data }) => {
-  const renderCard = ({ item }: { item: Serie }) => (
+  const renderCard = ({ item }: { item: Show }) => (
     <FavoriteCard
-      image={item.url}
+      image={item.image?.medium}
       onPress={() => {}}
       onStarPress={() => {}}
       serieName={item.name}

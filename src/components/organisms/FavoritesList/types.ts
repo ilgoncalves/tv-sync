@@ -1,4 +1,4 @@
-import { Serie } from '~/types/series';
+import { Serie } from '~/types/shows';
 
 export interface FavoritesListProps {
   data: Serie[];
