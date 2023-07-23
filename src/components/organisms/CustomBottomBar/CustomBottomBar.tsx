@@ -29,7 +29,7 @@ const CustomBottomBar: FC<BottomTabBarProps> = ({
           });
 
           if (!isFocused && !event.defaultPrevented) {
-            navigation.navigate({ name: route.name, merge: true });
+            navigation.navigate(route.name);
           }
         };
 

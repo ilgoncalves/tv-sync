@@ -27,7 +27,7 @@ const Search: FC<SearchProps> = ({}) => {
 
   return (
     <MainTemplate title={t(TranslationsKeys.SearchTitle)}>
-      <Div px={20}>
+      <Div px="md">
         <SearchBar
           value={searchText}
           onChangeText={text => {

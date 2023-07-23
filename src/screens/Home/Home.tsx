@@ -1,14 +1,14 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { HomeProps } from './types';
 import { MainTemplate } from '~/components/templates';
 import { TranslationsKeys } from '~/i18n';
 import { Div, ScrollDiv } from 'react-native-magnus';
 import { useTranslation } from 'react-i18next';
-import { GenderList } from '~/components/organisms';
 import { SearchBar } from '~/components/molecules';
 
 const Home: FC<HomeProps> = ({}) => {
   const { t } = useTranslation();
+  const [searchText, setSearchText] = useState('');
 
   return (
     <MainTemplate
@@ -16,13 +16,13 @@ const Home: FC<HomeProps> = ({}) => {
       title={t(TranslationsKeys.HomeWelcome, { name: 'Igor' })}>
       <Div>
         <Div px="md">
-          <SearchBar />
+          <SearchBar value={searchText} onChangeText={setSearchText} />
         </Div>
-        <ScrollDiv>
+        <ScrollDiv flex={1}>
+          {/* <GenderList sectionTitle="Drama/Comedy" data={[]} />
           <GenderList sectionTitle="Drama/Comedy" data={[]} />
           <GenderList sectionTitle="Drama/Comedy" data={[]} />
-          <GenderList sectionTitle="Drama/Comedy" data={[]} />
-          <GenderList sectionTitle="Drama/Comedy" data={[]} />
+          <GenderList sectionTitle="Drama/Comedy" data={[]} /> */}
         </ScrollDiv>
       </Div>
     </MainTemplate>

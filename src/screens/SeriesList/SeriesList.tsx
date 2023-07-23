@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { SeriesListProps } from './types';
 import { FlatList } from 'react-native';
 import { SeriesCard } from '~/components/molecules';
-import { ResultsText } from '~/components/atoms/ResultsText';
+import { ResultsText } from '~/components/atoms';
 import { Div } from 'react-native-magnus';
 import { Show } from '~/models';
 import { useNavigation } from '@react-navigation/native';
