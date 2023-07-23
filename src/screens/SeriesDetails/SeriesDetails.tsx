@@ -19,7 +19,6 @@ import { Animated, ScrollView } from 'react-native';
 const SeriesDetails: FC<SeriesDetailsProps> = ({}) => {
   const { t } = useTranslation();
   const offset = useRef(new Animated.Value(0)).current;
-  const { navigate } = useNavigation();
   const { params } =
     useRoute<RouteProp<DetailsStackParamList, '/series-detail'>>();
 

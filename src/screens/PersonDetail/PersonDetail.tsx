@@ -27,7 +27,7 @@ const PersonDetail: FC<PersonDetailProps> = ({}) => {
     <MainTemplate
       backButton
       centralizeTitle
-      title={t(TranslationsKeys.PersonDetailTitle)}>
+      title={t(TranslationsKeys.ActorDetailTitle)}>
       <Button mb="sm" onPress={goToSeriesDetails} variant="solid">
         Go to Series Details
       </Button>
