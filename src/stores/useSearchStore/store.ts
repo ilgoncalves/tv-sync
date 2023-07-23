@@ -8,6 +8,8 @@ const service = new SearchService();
 
 const initialState: SearchStoreInitialState = {
   searchedShows: [],
+  searchedPeople: [],
+  currentTabScreen: 'serie-list',
 };
 
 export const useSearchStore = create<SearchStoreState>()(
@@ -25,6 +27,16 @@ export const useSearchStore = create<SearchStoreState>()(
       } catch (error) {
         console.log('error', error);
       }
+    },
+    searchPeople: async query => {
+      try {
+      } catch (error) {}
+    },
+    setCurrentTabScreen: currentTab => {
+      set({ currentTabScreen: currentTab });
+    },
+    clear: () => {
+      set({ searchedQuery: undefined, searchedPeople: [], searchedShows: [] });
     },
   })),
 );

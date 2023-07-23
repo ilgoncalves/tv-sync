@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 import { SearchProps } from './types';
 import { MainTemplate } from '~/components/templates';
 import { useTranslation } from 'react-i18next';
@@ -12,17 +12,27 @@ import { useSearchStore } from '~/stores';
 const Search: FC<SearchProps> = ({}) => {
   const { t } = useTranslation();
 
-  const { searchShows } = useSearchStore();
+  const { searchShows, searchPeople, currentTabScreen, clear } =
+    useSearchStore();
 
   const [searchText, setSearchText] = useState('');
 
+  useEffect(() => {
+    clear();
+    setSearchText('');
+  }, [currentTabScreen]);
+
   const handleSearch = async (query: string) => {
-    await searchShows(query);
+    if (currentTabScreen === 'serie-list') {
+      return await searchShows(query);
+    }
+
+    return await searchPeople(query);
   };
 
   const optimizedSearch = useMemo<(toSearch: string) => void>(
     () => debounce((toSearch: string) => handleSearch(toSearch), 1000),
-    [],
+    [currentTabScreen],
   );
 
   return (

@@ -1,6 +1,6 @@
 export interface CastMember {
   name: string;
-  imageURL: string;
+  imageURL?: string;
 }
 export interface Director {
   name: string;

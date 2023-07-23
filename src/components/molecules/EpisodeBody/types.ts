@@ -1,6 +1,6 @@
 export interface Episode {
   title: string;
-  duration: string;
+  duration?: string;
   season: number;
   description: string;
   images: string[];

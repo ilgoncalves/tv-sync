@@ -26,7 +26,7 @@ const Settings: FC<SettingsProps> = ({}) => {
         <SettingsOption
           iconName="languageTranslator"
           text={t(TranslationsKeys.SettingsChangeLanguage)}
-          onPress={() => dropdownRef.current?.open}
+          onPress={() => dropdownRef.current?.open()}
         />
         <I18nDropdown dropdownRef={dropdownRef} />
       </Div>
