@@ -1,5 +1,5 @@
 export interface PersonCardProps {
   name: string;
-  picture: string;
+  image: string;
   onPress: () => void;
 }
