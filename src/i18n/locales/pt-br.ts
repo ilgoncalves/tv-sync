@@ -11,6 +11,12 @@ const translations: TranslationKey = {
   [TranslationKeyEnum.SeriesInformationsContentMinutes]: 'minutos',
   [TranslationKeyEnum.SeriesInformationsContentEpisodes]: 'episódios',
   [TranslationKeyEnum.CastAndCrewTitle]: 'Cast & Crew',
+  [TranslationKeyEnum.SeasonSwitcherCurrentSeason]:
+    'Temporada {{currentSeason}}',
+  [TranslationKeyEnum.EpisodesCollapseEpisode]: 'Episódio {{episodeNumber}}',
+  [TranslationKeyEnum.EpisodeBodyDuration]: '{{duration}} minutos',
+  [TranslationKeyEnum.EpisodeBodySeason]: 'Season {{season}}',
+  [TranslationKeyEnum.EpisodeBodyImagesOfTheScenes]: 'Imagens das cenas',
 };
 
 export default { translation: translations };

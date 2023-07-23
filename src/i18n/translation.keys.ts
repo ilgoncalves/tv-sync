@@ -10,6 +10,11 @@ export enum TranslationKeyEnum {
   SeriesInformationsContentMinutes = 'series-information-content-minutes',
   SeriesInformationsContentEpisodes = 'series-informations-content-episodes',
   CastAndCrewTitle = 'cast-and-crew-title',
+  SeasonSwitcherCurrentSeason = 'season-switcher-current-season',
+  EpisodesCollapseEpisode = 'episodes-collapse-episode',
+  EpisodeBodyDuration = 'episode-body-duration',
+  EpisodeBodySeason = 'episode-body-season',
+  EpisodeBodyImagesOfTheScenes = 'episode-body-images-of-the-scenes',
 }
 
 export type TranslationKey = { [K in TranslationKeyEnum]: string };

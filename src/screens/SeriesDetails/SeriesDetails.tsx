@@ -12,7 +12,7 @@ import {
   SeriesRecommendationsTab,
   SeriesSynopsisTab,
 } from '~/components/organisms';
-import { Tab } from '~/components/molecules';
+import { Episode, Tab } from '~/components/molecules';
 
 import { Animated, ScrollView } from 'react-native';
 
@@ -74,6 +74,29 @@ const SeriesDetails: FC<SeriesDetailsProps> = ({}) => {
     ],
   };
 
+  const episodes: Episode[] = [
+    {
+      title: 'Episode 1',
+      duration: '60',
+      season: 1,
+      description: 'This is the first episode.',
+      images: [
+        'https://via.placeholder.com/100',
+        'https://via.placeholder.com/100',
+      ],
+    },
+    {
+      title: 'Episode 2',
+      duration: '50',
+      season: 1,
+      description: 'This is the second episode.',
+      images: [
+        'https://via.placeholder.com/100',
+        'https://via.placeholder.com/100',
+      ],
+    },
+  ];
+
   const tabsContent: Record<string, ReactNode> = {
     synopsis: (
       <SeriesSynopsisTab
@@ -85,7 +108,7 @@ const SeriesDetails: FC<SeriesDetailsProps> = ({}) => {
         cast={seriesInfo.cast}
       />
     ),
-    episodes: <SeriesEpisodesTab />,
+    episodes: <SeriesEpisodesTab episodes={episodes} />,
     recommendations: <SeriesRecommendationsTab />,
   };
 
@@ -106,9 +129,6 @@ const SeriesDetails: FC<SeriesDetailsProps> = ({}) => {
         />
 
         <ScrollView
-          contentContainerStyle={{
-            alignItems: 'center',
-          }}
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={5}
           onScroll={Animated.event(
