@@ -21,6 +21,8 @@ export const useShowStore = create<ShowStoreState>()(
       const rawShow = await service.getShowInformation(showId);
       const rawCast = await service.getShowCast(showId);
 
+      console.log('rawCast', JSON.stringify(rawCast, undefined, 2));
+
       const show = Show.fromApiResponse(rawShow);
 
       const showEpisodes = rawEpisodes.map(episode =>

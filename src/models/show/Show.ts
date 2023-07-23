@@ -1,8 +1,10 @@
 import { Show as ShowApi } from '~/services/types';
 import { IImage, IRating, IShow, IShowParams } from './interfaces';
 import { Episode } from '../episode';
-import { SerieInfo as ShowInfoUi } from '~/components/organisms';
-import { CastMember } from '~/components/organisms/CastAndCrew';
+import {
+  CastMember as PersonInfoUi,
+  SerieInfo as ShowInfoUi,
+} from '~/components/organisms';
 import { Episode as EpisodeUi } from '~/components/molecules';
 
 export class Show implements IShow {
@@ -106,7 +108,7 @@ export class Show implements IShow {
     };
   }
 
-  public getCast(): CastMember[] {
+  public getCast(): PersonInfoUi[] {
     return [
       {
         name: 'Actor One',

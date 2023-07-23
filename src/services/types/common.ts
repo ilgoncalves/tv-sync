@@ -73,6 +73,8 @@ export interface Schedule {
   days: string[];
 }
 
+// Episode types
+
 export interface Episode {
   id: number;
   url: string;
@@ -93,4 +95,44 @@ export interface Episode {
 export interface EpisodeLinks {
   self: Self;
   show: Self;
+}
+
+// Person types
+
+export interface Cast {
+  person: Person;
+  character: Character;
+  self: boolean;
+  voice: boolean;
+}
+
+export interface Character {
+  id: number;
+  url: string;
+  name: string;
+  image?: Image;
+  _links: PersonLinks;
+}
+
+export interface Person {
+  id: number;
+  url: string;
+  name: string;
+  country?: Country;
+  birthday?: string;
+  deathday?: any;
+  gender: string;
+  image: Image;
+  updated: number;
+  _links: PersonLinks;
+}
+
+export interface PersonLinks {
+  self: Self;
+}
+
+export interface Country {
+  name: string;
+  code: string;
+  timezone: string;
 }
