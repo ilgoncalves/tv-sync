@@ -36,8 +36,8 @@ export class Cast implements ICast {
       country: apiResponse.person.country,
       birthday: apiResponse.person.birthday,
       deathday: apiResponse.person.deathday,
-      gender: apiResponse.person.gender,
-      image: apiResponse.person.image,
+      gender: apiResponse.person?.gender,
+      image: apiResponse.person?.image,
       updated: apiResponse.person.updated,
       _links: apiResponse.person._links,
     });

@@ -1,5 +1,5 @@
 import ApiService from './api.service';
-import { SearchShowsResponse } from './types';
+import { SearchPeopleResponse, SearchShowsResponse } from './types';
 
 class SearchService extends ApiService {
   public constructor() {
@@ -17,7 +17,9 @@ class SearchService extends ApiService {
   }
 
   public searchPeople(query: string) {
-    return this.get(`/search/people?q=${encodeURIComponent(query)}`);
+    return this.get<SearchPeopleResponse[]>(
+      `/search/people?q=${encodeURIComponent(query)}`,
+    );
   }
 }
 

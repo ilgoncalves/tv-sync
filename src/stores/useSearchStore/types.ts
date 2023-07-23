@@ -1,9 +1,9 @@
-import { Show } from '~/models';
+import { Person, Show } from '~/models';
 
 type SearchTabScreen = 'serie-list' | 'people-search';
 export interface SearchStoreInitialState {
   searchedShows: Show[];
-  searchedPeople: any[];
+  searchedPeople: Person[];
   currentTabScreen: SearchTabScreen;
   searchedQuery?: string;
 }

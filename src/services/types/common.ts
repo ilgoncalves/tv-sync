@@ -34,8 +34,8 @@ export interface Self {
 }
 
 export interface Image {
-  medium: string;
-  original: string;
+  medium?: string;
+  original?: string;
 }
 
 export interface Externals {
@@ -121,8 +121,8 @@ export interface Person {
   country?: Country;
   birthday?: string;
   deathday?: any;
-  gender: string;
-  image: Image;
+  gender?: string;
+  image?: Image;
   updated: number;
   _links: PersonLinks;
 }

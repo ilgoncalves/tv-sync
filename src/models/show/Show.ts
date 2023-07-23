@@ -1,5 +1,5 @@
-import { Show as ShowApi } from '~/services/types';
-import { IImage, IRating, IShow, IShowParams } from './interfaces';
+import { Image, Rating, Show as ShowApi } from '~/services/types';
+import { IShow, IShowParams } from './interfaces';
 import { Episode } from '../episode';
 import {
   CastMember as PersonInfoUi,
@@ -15,8 +15,8 @@ export class Show implements IShow {
   private _status: string;
   private _runtime?: number;
   private _premiered?: string;
-  private _rating?: IRating;
-  private _image?: IImage;
+  private _rating?: Rating;
+  private _image?: Image;
   private _summary?: string;
 
   private _episodes?: Episode[];
@@ -44,29 +44,24 @@ export class Show implements IShow {
     this._summary = summary;
   }
 
-  runtime?: number | undefined;
-  premiered?: string | undefined;
-  rating?: IRating | undefined;
-  episodes?: Episode[] | undefined;
-
-  get id(): number {
+  get id() {
     return this._id;
   }
 
-  get name(): string {
+  get name() {
     return this._name;
   }
-  get genres(): string[] {
+  get genres() {
     return this._genres;
   }
-  get status(): string {
+  get status() {
     return this._status;
   }
 
-  get image(): IImage | undefined {
+  get image() {
     return this._image;
   }
-  get summary(): string | undefined {
+  get summary() {
     return this._summary;
   }
 

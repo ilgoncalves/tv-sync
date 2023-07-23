@@ -5,15 +5,7 @@ import {
   SerieInfo as ShowInfoUi,
 } from '~/components/organisms';
 import { Cast } from '../cast';
-
-export interface IRating {
-  average?: number;
-}
-
-export interface IImage {
-  medium: string;
-  original: string;
-}
+import { Image, Rating } from '~/services/types';
 
 export interface IShowParams {
   id: number;
@@ -22,8 +14,8 @@ export interface IShowParams {
   status: string;
   runtime?: number;
   premiered?: string;
-  rating?: IRating;
-  image?: IImage;
+  rating?: Rating;
+  image?: Image;
   summary?: string;
   episodes?: Episode[];
 }

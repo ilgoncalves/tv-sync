@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { SearchStoreInitialState, SearchStoreState } from './types';
 import { SearchService } from '~/services';
-import { Show } from '~/models';
+import { Person, Show } from '~/models';
 
 const service = new SearchService();
 
@@ -30,7 +30,16 @@ export const useSearchStore = create<SearchStoreState>()(
     },
     searchPeople: async query => {
       try {
-      } catch (error) {}
+        const rawPeopleResponse = await service.searchPeople(query);
+        console.log(JSON.stringify(rawPeopleResponse, undefined, 2));
+        const people = rawPeopleResponse.map(el =>
+          Person.fromApiResponse(el.person),
+        );
+
+        set({ searchedPeople: people });
+      } catch (error) {
+        console.log('searchPeople error', error);
+      }
     },
     setCurrentTabScreen: currentTab => {
       set({ currentTabScreen: currentTab });

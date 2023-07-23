@@ -7,8 +7,8 @@ export interface IPersonParams {
   country?: Country;
   birthday?: string;
   deathday?: any;
-  gender: string;
-  image: Image;
+  gender?: string;
+  image?: Image;
   updated: number;
   _links: PersonLinks;
 }

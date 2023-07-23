@@ -13,8 +13,8 @@ export class Person implements IPerson {
   private _country?: Country | undefined;
   private _birthday?: string | undefined;
   private _deathday?: any;
-  private _gender: string;
-  private _image: Image;
+  private _gender?: string;
+  private _image?: Image;
   private _updated: number;
   private __links: PersonLinks;
 
