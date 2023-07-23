@@ -1,5 +1,5 @@
-import { Serie } from '~/types/shows';
+import { Show } from '~/models';
 
 export interface FavoritesListProps {
-  data: Serie[];
+  data: Show[];
 }

@@ -62,4 +62,4 @@ const IconSvg = ({
   );
 };
 
-export default IconSvg;
+export { IconSvg };

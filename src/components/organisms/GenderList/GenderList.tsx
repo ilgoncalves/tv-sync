@@ -19,7 +19,7 @@ const GenderList: FC<GenderListProps> = ({
       <FlatList
         data={data}
         renderItem={({ item }) => (
-          <SeriesImage image={item.url} onPress={onItemPress} />
+          <SeriesImage image={item.image?.medium} onPress={onItemPress} />
         )}
         horizontal={true}
         contentContainerStyle={{ gap }}

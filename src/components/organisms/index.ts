@@ -6,4 +6,4 @@ export * from './SeriesSynopsisTab';
 export * from './EpisodesCollapse';
 export * from './FavoritesList';
 export * from './GenderList';
-export * from './PeopleList';
+export * from './CastAndCrew';

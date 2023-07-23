@@ -11,3 +11,4 @@ export * from './SeriesCard';
 export * from './SettingsOption';
 export * from './PersonCard';
 export * from './FavoriteModal';
+export * from './I18nDropdown';

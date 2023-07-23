@@ -3,13 +3,12 @@ import { SettingsProps } from './types';
 import { useTranslation } from 'react-i18next';
 import { MainTemplate } from '~/components/templates';
 import { TranslationsKeys } from '~/i18n';
-import { Div } from 'react-native-magnus';
-import { SettingsOption } from '~/components/molecules';
-import { I18nDropdown } from '~/components/molecules/I18nDropdown';
+import { Div, DropdownRef } from 'react-native-magnus';
+import { I18nDropdown, SettingsOption } from '~/components/molecules';
 
 const Settings: FC<SettingsProps> = ({}) => {
   const { t } = useTranslation();
-  const dropdownRef = createRef();
+  const dropdownRef = createRef<DropdownRef>();
 
   return (
     <MainTemplate centralizeTitle title={t(TranslationsKeys.SettingsTitle)}>
@@ -27,7 +26,7 @@ const Settings: FC<SettingsProps> = ({}) => {
         <SettingsOption
           iconName="languageTranslator"
           text={t(TranslationsKeys.SettingsChangeLanguage)}
-          onPress={() => dropdownRef.current?.open()}
+          onPress={() => dropdownRef.current?.open}
         />
         <I18nDropdown dropdownRef={dropdownRef} />
       </Div>
