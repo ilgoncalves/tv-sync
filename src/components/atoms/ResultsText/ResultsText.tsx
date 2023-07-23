@@ -9,7 +9,7 @@ const ResultsText: FC<ResultsTextProps> = ({ text }) => {
 
   return (
     text && (
-      <Text mb={20} variant="large">
+      <Text my={12} variant="large">
         {t(TranslationsKeys.SearchResultsFor, { name: text })}
       </Text>
     )

@@ -46,7 +46,7 @@ const SerieDetailHeader: FC<SerieDetailHeaderProps> = ({
           overflow: 'hidden',
         }}>
         <ImageBackground
-          source={{ uri: serieInfo.imageUrl }}
+          source={{ uri: serieInfo?.imageUrl }}
           blurRadius={8}
           imageStyle={[
             {
@@ -65,13 +65,13 @@ const SerieDetailHeader: FC<SerieDetailHeaderProps> = ({
 
           <Animated.View style={{ flex: 1, opacity: componentsOpacity }}>
             <SeriesInformationsContent
-              imageUrl={serieInfo.imageUrl}
-              title={serieInfo.title}
-              rating={serieInfo.rating}
-              minutes={serieInfo.minutes}
-              genres={serieInfo.genres}
-              episodes={serieInfo.episodes}
-              isFavorite={serieInfo.isFavorite}
+              imageUrl={serieInfo?.imageUrl}
+              title={serieInfo?.title}
+              rating={serieInfo?.rating}
+              minutes={serieInfo?.minutes}
+              genres={serieInfo?.genres}
+              episodes={serieInfo?.episodes}
+              isFavorite={serieInfo?.isFavorite}
               onToggleFavorite={() => {}}
             />
           </Animated.View>

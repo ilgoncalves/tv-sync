@@ -4,8 +4,12 @@ import {
   SeriesInformationsContentProps,
 } from '~/components/molecules';
 
+export type SerieInfo = Omit<
+  SeriesInformationsContentProps,
+  'onToggleFavorite'
+>;
 export interface SerieDetailHeaderProps {
-  serieInfo: Omit<SeriesInformationsContentProps, 'onToggleFavorite'>;
+  serieInfo: SerieInfo;
   tabs: OptionsTabNavigatorProps;
   offset: Animated.Value;
 }

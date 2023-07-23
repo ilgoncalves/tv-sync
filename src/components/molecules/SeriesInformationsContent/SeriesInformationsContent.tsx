@@ -20,13 +20,7 @@ const SeriesInformationsContent: FC<SeriesInformationsContentProps> = ({
   return (
     <Div row p="md">
       <Div pb={32} w="35%" justifyContent="center" alignItems="center">
-        <Image
-          shadow="md"
-          rounded="md"
-          w="100%"
-          h="100%"
-          source={{ uri: imageUrl }}
-        />
+        <Image rounded="md" w="100%" h="100%" source={{ uri: imageUrl }} />
       </Div>
       <Div w="65%">
         <Div alignItems="flex-end">
@@ -57,7 +51,7 @@ const SeriesInformationsContent: FC<SeriesInformationsContentProps> = ({
             {minutes} {t(TranslationsKeys.SeriesInformationsContentMinutes)}
           </Text>
           <Text mb="xs" variant="medium">
-            {genres.join(', ')}
+            {genres?.join(', ')}
           </Text>
           <Text mb="xs" variant="medium">
             {episodes} {t(TranslationsKeys.SeriesInformationsContentEpisodes)}

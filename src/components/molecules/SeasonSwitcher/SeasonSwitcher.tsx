@@ -21,7 +21,7 @@ const SeasonSwitcher: FC<SeasonSwitcherProps> = ({
   };
 
   const handleIncrease = () => {
-    if (currentSeason < totalSeasons) {
+    if (!!totalSeasons && currentSeason < totalSeasons) {
       setCurrentSeason(prev => prev + 1);
       onSeasonChange(currentSeason + 1);
     }
