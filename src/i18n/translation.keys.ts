@@ -9,6 +9,7 @@ export enum TranslationKeyEnum {
   SettingTitle = 'setting-title',
   SeriesInformationsContentMinutes = 'series-information-content-minutes',
   SeriesInformationsContentEpisodes = 'series-informations-content-episodes',
+  CastAndCrewTitle = 'cast-and-crew-title',
 }
 
 export type TranslationKey = { [K in TranslationKeyEnum]: string };

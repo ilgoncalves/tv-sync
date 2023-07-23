@@ -5,6 +5,7 @@ import { CastAndCrewProps } from './types';
 import { useTranslation } from 'react-i18next';
 import { TranslationsKeys } from '~/i18n';
 import { getFontWeight } from '~/theme/components/Text';
+import uuid from 'react-native-uuid';
 
 const CastAndCrew: FC<CastAndCrewProps> = ({ cast, director }) => {
   const { t } = useTranslation();
@@ -31,7 +32,7 @@ const CastAndCrew: FC<CastAndCrewProps> = ({ cast, director }) => {
             </Text>
           </Div>
         )}
-        keyExtractor={item => item.name}
+        keyExtractor={() => uuid.v4().toString()}
       />
       <Div borderTopWidth={0.4} borderColor="secondary.textLight" p="lg">
         <Text

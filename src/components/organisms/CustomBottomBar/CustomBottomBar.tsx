@@ -1,7 +1,8 @@
-import React, { FC } from 'react';
+import React, { ElementType, FC } from 'react';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { BlurView } from '@react-native-community/blur';
+import uuid from 'react-native-uuid';
 import { colors } from '~/theme/colors';
 
 const CustomBottomBar: FC<BottomTabBarProps> = ({
@@ -40,10 +41,11 @@ const CustomBottomBar: FC<BottomTabBarProps> = ({
           });
         };
 
-        const Icon = options.tabBarIcon;
+        const Icon = options.tabBarIcon as ElementType;
 
         return (
           <TouchableOpacity
+            key={`bottom-tab-${uuid.v4().toString()}`}
             accessibilityRole="button"
             accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
