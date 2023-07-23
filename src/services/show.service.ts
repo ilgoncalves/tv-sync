@@ -1,16 +1,17 @@
 import ApiService from './api.service';
+import { Episode, Show } from './types';
 
-class ShowsService extends ApiService {
+class ShowService extends ApiService {
   public constructor() {
     super('');
   }
 
   public getShowInformation(id: string) {
-    return this.get(`/shows/${id}`);
+    return this.get<Show>(`/shows/${id}`);
   }
 
   public getEpisodeList(id: string) {
-    return this.get(`/shows/${id}/episodes`);
+    return this.get<Episode[]>(`/shows/${id}/episodes`);
   }
 
   public getAlternateLists(id: string) {
@@ -52,8 +53,8 @@ class ShowsService extends ApiService {
   }
 
   public getShowIndex(pageNum: number) {
-    return this.get(`/shows`, { params: { page: pageNum } });
+    return this.get('/shows', { params: { page: pageNum } });
   }
 }
 
-export const showsService = new ShowsService();
+export default ShowService;

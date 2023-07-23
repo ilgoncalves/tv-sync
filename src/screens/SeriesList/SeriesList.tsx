@@ -5,24 +5,34 @@ import { SeriesCard } from '~/components/molecules';
 import { ResultsText } from '~/components/atoms/ResultsText';
 import { Div } from 'react-native-magnus';
 import { Show } from '~/models';
-import { useSearchStore } from '~/stores/useSearchStore/store';
+import { useNavigation } from '@react-navigation/native';
+import { useSearchStore } from '~/stores';
 
 const SeriesList: FC<SeriesListProps> = ({}) => {
   const { searchedShows, searchedQuery } = useSearchStore();
+  const navigation = useNavigation();
 
   const renderCard = ({ item }: { item: Show }) => (
     <SeriesCard
       image={item.image?.medium}
-      onPress={() => {}}
+      onPress={() => {
+        navigation.navigate('details', {
+          screen: '/series-detail',
+          params: {
+            serieId: item.id.toString(),
+          },
+        });
+      }}
       title={item.name}
     />
   );
 
   return (
-    <Div bg="black" px={20} flex={1}>
+    <Div shadow="lg" px={20} flex={1}>
+      <ResultsText text={searchedQuery} />
       <FlatList
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingTop: 30, paddingBottom: 100 }}
-        ListHeaderComponent={<ResultsText text={searchedQuery} />}
         keyExtractor={item => `${item.id}`}
         data={searchedShows}
         renderItem={renderCard}

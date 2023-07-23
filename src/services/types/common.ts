@@ -21,10 +21,10 @@ export interface Show {
   image?: Image;
   summary?: string;
   updated: number;
-  _links: Links;
+  _links: ShowLinks;
 }
 
-export interface Links {
+export interface ShowLinks {
   self: Self;
   previousepisode?: Self;
 }
@@ -71,4 +71,26 @@ export interface Rating {
 export interface Schedule {
   time: string;
   days: string[];
+}
+
+export interface Episode {
+  id: number;
+  url: string;
+  name: string;
+  season: number;
+  number: number;
+  type: string;
+  airdate: string;
+  airtime: string;
+  airstamp: string;
+  runtime: number;
+  rating: Rating;
+  image: Image;
+  summary: string;
+  _links: EpisodeLinks;
+}
+
+export interface EpisodeLinks {
+  self: Self;
+  show: Self;
 }

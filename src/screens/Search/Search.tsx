@@ -7,7 +7,7 @@ import { Div } from 'react-native-magnus';
 import { SearchTabs } from '~/navigation/search.tabs';
 import { SearchBar } from '~/components/molecules';
 import debounce from 'lodash.debounce';
-import { useSearchStore } from '~/stores/useSearchStore/store';
+import { useSearchStore } from '~/stores';
 
 const Search: FC<SearchProps> = ({}) => {
   const { t } = useTranslation();
@@ -16,8 +16,12 @@ const Search: FC<SearchProps> = ({}) => {
 
   const [searchText, setSearchText] = useState('');
 
+  const handleSearch = async (query: string) => {
+    await searchShows(query);
+  };
+
   const optimizedSearch = useMemo<(toSearch: string) => void>(
-    () => debounce((toSearch: string) => searchShows(toSearch), 1000),
+    () => debounce((toSearch: string) => handleSearch(toSearch), 1000),
     [],
   );
 

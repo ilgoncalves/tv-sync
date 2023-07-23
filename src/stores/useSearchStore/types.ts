@@ -1,10 +1,10 @@
 import { Show } from '~/models';
 
-export interface SearchInitialState {
+export interface SearchStoreInitialState {
   searchedShows: Show[];
   searchedQuery?: string;
 }
 
-export interface SearchState extends SearchInitialState {
+export interface SearchStoreState extends SearchStoreInitialState {
   searchShows: (query: string) => Promise<void>;
 }

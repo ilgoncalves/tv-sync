@@ -1,16 +1,16 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-import { SearchInitialState, SearchState } from './types';
+import { SearchStoreInitialState, SearchStoreState } from './types';
 import { SearchService } from '~/services';
 import { Show } from '~/models';
 
 const service = new SearchService();
 
-const initialState: SearchInitialState = {
+const initialState: SearchStoreInitialState = {
   searchedShows: [],
 };
 
-export const useSearchStore = create<SearchState>()(
+export const useSearchStore = create<SearchStoreState>()(
   devtools(set => ({
     ...initialState,
     searchShows: async query => {
@@ -18,7 +18,7 @@ export const useSearchStore = create<SearchState>()(
         const rawResponse = await service.searchShows(query);
 
         const shows = rawResponse.map(response =>
-          Show.fromApiResponse(response),
+          Show.fromApiResponse(response.show),
         );
 
         set({ searchedShows: shows, searchedQuery: query });
