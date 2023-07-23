@@ -1,44 +1,38 @@
-import { FC, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { SearchProps } from './types';
 import { MainTemplate } from '~/components/templates';
 import { useTranslation } from 'react-i18next';
 import { TranslationsKeys } from '~/i18n';
-import { Button, Div } from 'react-native-magnus';
-import { useNavigation } from '@react-navigation/native';
+import { Div } from 'react-native-magnus';
 import { SearchTabs } from '~/navigation/search.tabs';
 import { SearchBar } from '~/components/molecules';
+import debounce from 'lodash.debounce';
+import { useSearchStore } from '~/stores/useSearchStore/store';
 
 const Search: FC<SearchProps> = ({}) => {
   const { t } = useTranslation();
-  const { navigate } = useNavigation();
+
+  const { searchShows } = useSearchStore();
 
   const [searchText, setSearchText] = useState('');
 
-  const goToSeriesDetails = () => {
-    navigate('details', {
-      screen: '/series-detail',
-      params: {
-        serieId: Math.random().toString(),
-      },
-    });
-  };
-
-  const goToPersonDetails = () => {
-    navigate('details', {
-      screen: '/person-detail',
-      params: {
-        personId: Math.random().toString(),
-      },
-    });
-  };
+  const optimizedSearch = useMemo<(toSearch: string) => void>(
+    () => debounce((toSearch: string) => searchShows(toSearch), 1000),
+    [],
+  );
 
   return (
     <MainTemplate title={t(TranslationsKeys.SearchTitle)}>
       <Div px={20}>
-        <SearchBar value={searchText} onChangeText={setSearchText} />
+        <SearchBar
+          value={searchText}
+          onChangeText={text => {
+            setSearchText(text);
+            optimizedSearch(text);
+          }}
+        />
       </Div>
       <SearchTabs />
-      <Button onPress={() => goToSeriesDetails()} />
     </MainTemplate>
   );
 };

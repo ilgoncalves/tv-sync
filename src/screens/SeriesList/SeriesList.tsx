@@ -4,20 +4,27 @@ import { FlatList } from 'react-native';
 import { SeriesCard } from '~/components/molecules';
 import { ResultsText } from '~/components/atoms/ResultsText';
 import { Div } from 'react-native-magnus';
-import { Serie } from '~/types/series';
+import { Show } from '~/models';
+import { useSearchStore } from '~/stores/useSearchStore/store';
 
-const SeriesList: FC<SeriesListProps> = ({ data, text }) => {
-  const renderCard = ({ item }: { item: Serie }) => (
-    <SeriesCard image={item.url} onPress={() => {}} title={item.name} />
+const SeriesList: FC<SeriesListProps> = ({}) => {
+  const { searchedShows, searchedQuery } = useSearchStore();
+
+  const renderCard = ({ item }: { item: Show }) => (
+    <SeriesCard
+      image={item.image?.medium}
+      onPress={() => {}}
+      title={item.name}
+    />
   );
 
   return (
     <Div bg="black" px={20} flex={1}>
       <FlatList
         contentContainerStyle={{ paddingTop: 30, paddingBottom: 100 }}
-        ListHeaderComponent={<ResultsText text={text} />}
+        ListHeaderComponent={<ResultsText text={searchedQuery} />}
         keyExtractor={item => `${item.id}`}
-        data={data}
+        data={searchedShows}
         renderItem={renderCard}
       />
     </Div>
