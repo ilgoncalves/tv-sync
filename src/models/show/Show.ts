@@ -133,7 +133,7 @@ export class Show implements IShow {
   }
 
   getMostImportantCrewPerson(): MostImportantCrewPerson | undefined {
-    if (!this._crew) {
+    if (!this._crew || this._crew?.length <= 0) {
       return;
     }
 
@@ -146,6 +146,9 @@ export class Show implements IShow {
         personResponsibilities[member.person.id] = [];
       }
       personResponsibilities[member.person.id].push(member.type);
+    }
+    if (!personResponsibilities) {
+      return;
     }
 
     let mostImportantPersonId = Object.keys(personResponsibilities).reduce(
