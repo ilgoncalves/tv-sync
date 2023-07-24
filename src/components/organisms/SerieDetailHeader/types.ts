@@ -12,4 +12,5 @@ export interface SerieDetailHeaderProps {
   serieInfo: SerieInfo;
   tabs: OptionsTabNavigatorProps;
   offset: Animated.Value;
+  onFavoritePress: () => void;
 }

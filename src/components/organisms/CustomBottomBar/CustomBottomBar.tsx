@@ -13,8 +13,8 @@ const CustomBottomBar: FC<BottomTabBarProps> = ({
   return (
     <BlurView
       style={styles.blurContainer}
-      blurType="extraDark"
-      blurAmount={1}
+      blurType="dark"
+      blurAmount={2}
       reducedTransparencyFallbackColor="white">
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];

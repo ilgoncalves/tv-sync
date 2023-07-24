@@ -14,16 +14,6 @@ const Settings: FC<SettingsProps> = ({}) => {
     <MainTemplate centralizeTitle title={t(TranslationsKeys.SettingsTitle)}>
       <Div px={12} mt={30}>
         <SettingsOption
-          iconName="key"
-          text={t(TranslationsKeys.SettingsSetPinNumber)}
-          onPress={() => {}}
-        />
-        <SettingsOption
-          iconName="fingerPrint"
-          text={t(TranslationsKeys.SettingsEnableFingerprintAuthentication)}
-          onPress={() => {}}
-        />
-        <SettingsOption
           iconName="languageTranslator"
           text={t(TranslationsKeys.SettingsChangeLanguage)}
           onPress={() => dropdownRef.current?.open()}

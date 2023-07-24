@@ -17,6 +17,7 @@ const SerieDetailHeader: FC<SerieDetailHeaderProps> = ({
   serieInfo,
   tabs,
   offset,
+  onFavoritePress,
 }) => {
   const headerHeight = offset.interpolate({
     inputRange: [10, HEADER_HEIGHT + 10],
@@ -72,7 +73,7 @@ const SerieDetailHeader: FC<SerieDetailHeaderProps> = ({
               genres={serieInfo?.genres}
               episodes={serieInfo?.episodes}
               isFavorite={serieInfo?.isFavorite}
-              onToggleFavorite={() => {}}
+              onToggleFavorite={onFavoritePress}
             />
           </Animated.View>
         </ImageBackground>

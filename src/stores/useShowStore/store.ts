@@ -13,6 +13,7 @@ const scheduleService = new ScheduleService();
 const initialState: ShowStoreInitialState = {
   currentDetailedShow: null,
   homeShows: {},
+  originalHomeShows: {},
 };
 
 export const useShowStore = create<ShowStoreState>()(
@@ -46,16 +47,32 @@ export const useShowStore = create<ShowStoreState>()(
     },
     getAllShows: async () => {
       try {
-        const rawFullSchedule = await scheduleService.getWebSchedule();
+        const rawFullSchedule = await scheduleService.getFullSchedule();
         const schedules = Schedule.fromApiResponse(rawFullSchedule);
 
-        console.log(
-          'rawFullSchedule',
-          JSON.stringify(schedules.showsByGenre, undefined, 2),
-        );
-
-        set({ homeShows: schedules.showsByGenre });
+        set({
+          homeShows: schedules.showsByGenre,
+          originalHomeShows: schedules.showsByGenre,
+        });
       } catch (error) {}
+    },
+    searchHomeShow: async query => {
+      set(state => {
+        if (query.length === 0) {
+          // If no query, reset to the original shows
+          return { homeShows: state.originalHomeShows };
+        }
+
+        const filteredShowsByGenre: Record<string, Show[]> = {};
+
+        Object.keys(state.homeShows).forEach(genre => {
+          filteredShowsByGenre[genre] = state.homeShows[genre].filter(show =>
+            show.name.toLowerCase().includes(query.toLowerCase()),
+          );
+        });
+
+        return { homeShows: filteredShowsByGenre };
+      });
     },
   })),
 );

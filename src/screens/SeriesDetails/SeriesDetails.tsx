@@ -12,19 +12,23 @@ import {
   SeriesRecommendationsTab,
   SeriesSynopsisTab,
 } from '~/components/organisms';
-import { Tab } from '~/components/molecules';
-
+import { FavoriteModal, Tab } from '~/components/molecules';
 import { Animated, ScrollView } from 'react-native';
-import { useShowStore } from '~/stores';
+import { useFavoritesShows, useShowStore } from '~/stores';
 
 const SeriesDetails: FC<SeriesDetailsProps> = ({}) => {
   const { t } = useTranslation();
   const { getShowInfo, currentDetailedShow } = useShowStore();
+  const { isShowFavorite, addToFavorites, removeFromFavorites } =
+    useFavoritesShows();
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const offset = useRef(new Animated.Value(0)).current;
   const { params } =
     useRoute<RouteProp<DetailsStackParamList, '/series-detail'>>();
 
   useEffect(() => {
+    setIsFavorite(isShowFavorite(parseInt(params.serieId, 10)));
     getShowInfo(params.serieId);
   }, []);
 
@@ -32,6 +36,17 @@ const SeriesDetails: FC<SeriesDetailsProps> = ({}) => {
 
   const handleTabPress = (tabKey: string) => {
     setActiveTabKey(tabKey);
+  };
+
+  const handleFavorite = () => {
+    if (currentDetailedShow) {
+      if (isFavorite) {
+        return setIsModalOpen(true);
+      }
+
+      addToFavorites(currentDetailedShow);
+      setIsFavorite(true);
+    }
   };
 
   const tabs: Tab[] = [
@@ -60,15 +75,28 @@ const SeriesDetails: FC<SeriesDetailsProps> = ({}) => {
       backButton
       centralizeTitle
       title={t(TranslationsKeys.SeriesDetailsTitle)}>
+      <FavoriteModal
+        isVisible={isModalOpen}
+        onConfirmPress={() => {
+          setIsFavorite(false);
+          setIsModalOpen(false);
+          currentDetailedShow && removeFromFavorites(currentDetailedShow?.id);
+        }}
+        onDeclinePress={() => setIsModalOpen(false)}
+      />
       <Div flex={1}>
         <SerieDetailHeader
           offset={offset}
+          onFavoritePress={handleFavorite}
           tabs={{
             activeTabKey,
             onTabPress: handleTabPress,
             tabs,
           }}
-          serieInfo={currentDetailedShow?.getShowInfoUi()!}
+          serieInfo={{
+            ...currentDetailedShow?.getShowInfoUi()!,
+            isFavorite,
+          }}
         />
 
         <ScrollView

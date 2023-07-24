@@ -32,13 +32,21 @@ export class Schedule implements ISchedule {
     const showsByGenre: Record<string, Show[]> = {};
 
     Object.values(showsById).forEach(show => {
-      show.genres.forEach(genre => {
+      const genre = show.genres[0];
+      if (genre) {
         if (!showsByGenre[genre]) {
           showsByGenre[genre] = [];
         }
         showsByGenre[genre].push(show);
-      });
+      }
     });
+
+    const sortedShowsByGenre: Record<string, Show[]> = {};
+    Object.keys(showsByGenre)
+      .sort((a, b) => showsByGenre[b].length - showsByGenre[a].length)
+      .forEach(key => {
+        sortedShowsByGenre[key] = showsByGenre[key];
+      });
 
     return new Schedule({ showsByGenre });
   }

@@ -31,7 +31,7 @@ export const useSearchStore = create<SearchStoreState>()(
     searchPeople: async query => {
       try {
         const rawPeopleResponse = await service.searchPeople(query);
-        console.log(JSON.stringify(rawPeopleResponse, undefined, 2));
+
         const people = rawPeopleResponse.map(el =>
           Person.fromApiResponse(el.person),
         );

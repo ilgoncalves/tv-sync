@@ -5,7 +5,7 @@ import {
   SerieInfo as ShowInfoUi,
 } from '~/components/organisms';
 import { Cast } from '../cast';
-import { Image, Rating } from '~/services/types';
+import { Image, Rating, Show as ShowApi } from '~/services/types';
 
 export interface IShowParams {
   id: number;
@@ -24,6 +24,7 @@ export interface IShow extends IShowParams {
   addEpisodes(episodes: Episode[]): void;
   addCast(cast: Cast[]): void;
   getSeasonAmount(): number;
+  toRaw(): Partial<ShowApi>;
   getEpisodesUiBySeason(currentSeason: number): EpisodeUi[];
   getShowInfoUi(): ShowInfoUi;
   getCast(): PersonInfoUi[];

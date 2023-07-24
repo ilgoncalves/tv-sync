@@ -13,18 +13,22 @@ import { ScrollView } from 'react-native';
 const Home: FC<HomeProps> = ({}) => {
   const { t } = useTranslation();
   const [searchText, setSearchText] = useState('');
-  const { getAllShows, homeShows } = useShowStore();
+  const { getAllShows, homeShows, searchHomeShow } = useShowStore();
 
   useEffect(() => {
     getAllShows();
   }, []);
+
+  useEffect(() => {
+    searchHomeShow(searchText);
+  }, [searchText]);
 
   return (
     <MainTemplate
       centralizeTitle={false}
       title={t(TranslationsKeys.HomeWelcome, { name: 'Igor' })}>
       <Div flex={1}>
-        <Div px="md">
+        <Div py={4} px="md">
           <SearchBar value={searchText} onChangeText={setSearchText} />
         </Div>
         <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 100 }}>

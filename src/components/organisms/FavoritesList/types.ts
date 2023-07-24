@@ -1,5 +1,5 @@
-import { Show } from '~/models';
+import { Show as ShowApi } from '~/services/types';
 
 export interface FavoritesListProps {
-  data: Show[];
+  data: ShowApi[];
 }

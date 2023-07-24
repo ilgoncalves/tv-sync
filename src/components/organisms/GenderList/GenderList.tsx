@@ -3,16 +3,24 @@ import { Div, Text } from 'react-native-magnus';
 import { GenderListProps } from './types';
 import { SeriesImage } from '~/components/atoms/SeriesImage';
 import { FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Show } from '~/models';
 
 const GenderList: FC<GenderListProps> = ({
   data,
   flatListKey,
   sectionTitle,
 }) => {
-  const gap = 8;
-
-  console.log(data);
-
+  const { navigate } = useNavigation();
+  const gap = 12;
+  const onPressItem = (item: Show) => {
+    navigate('details', {
+      screen: '/series-detail',
+      params: {
+        serieId: item.id.toString(),
+      },
+    });
+  };
   return (
     <Div my={8} justifyContent="center">
       <Text ml={12} mb={8} variant="headline4">
@@ -25,12 +33,12 @@ const GenderList: FC<GenderListProps> = ({
           <SeriesImage
             size={150}
             image={item.image?.medium}
-            onPress={() => {}}
+            onPress={() => onPressItem(item)}
           />
         )}
         keyExtractor={item => `${item.id}`}
         horizontal={true}
-        contentContainerStyle={{ gap }}
+        contentContainerStyle={{ gap, paddingHorizontal: 12 }}
         showsHorizontalScrollIndicator={false}
       />
     </Div>

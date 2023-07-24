@@ -22,7 +22,7 @@ export class Show implements IShow {
   private _episodes?: Episode[];
   private _cast?: Cast[];
 
-  private constructor({
+  public constructor({
     id,
     name,
     genres,
@@ -51,9 +51,11 @@ export class Show implements IShow {
   get name() {
     return this._name;
   }
+
   get genres() {
     return this._genres;
   }
+
   get status() {
     return this._status;
   }
@@ -61,11 +63,21 @@ export class Show implements IShow {
   get image() {
     return this._image;
   }
+
   get summary() {
     return this._summary;
   }
+
   get episodes() {
     return this._episodes;
+  }
+
+  get premiered() {
+    return this._premiered;
+  }
+
+  get rating() {
+    return this._rating;
   }
 
   public addEpisodes(episodes: Episode[]) {
@@ -122,6 +134,20 @@ export class Show implements IShow {
           name: castMember.person.name,
         }))
       : [];
+  }
+
+  public toRaw(): Partial<ShowApi> {
+    return {
+      id: this._id,
+      name: this._name,
+      genres: this._genres,
+      status: this._status,
+      runtime: this._runtime,
+      premiered: this._premiered,
+      rating: this._rating,
+      image: this._image,
+      summary: this._summary,
+    };
   }
 
   static fromApiResponse(apiResponse: ShowApi): Show {
