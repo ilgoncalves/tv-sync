@@ -6,15 +6,17 @@ import { TranslationsKeys } from '~/i18n';
 import { Button, Text } from 'react-native-magnus';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { DetailsStackParamList } from '~/navigation/types';
+import { useShowStore } from '~/stores';
 
 const PersonDetail: FC<PersonDetailProps> = ({}) => {
   const { t } = useTranslation();
   const { navigate } = useNavigation();
-
+  const { setDetailLoading } = useShowStore();
   const { params } =
     useRoute<RouteProp<DetailsStackParamList, '/person-detail'>>();
 
   const goToSeriesDetails = () => {
+    setDetailLoading(true);
     navigate('details', {
       screen: '/series-detail',
       params: {

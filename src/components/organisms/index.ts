@@ -7,3 +7,4 @@ export * from './EpisodesCollapse';
 export * from './FavoritesList';
 export * from './GenderList';
 export * from './CastAndCrew';
+export * from './LoadingOverlay';

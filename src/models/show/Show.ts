@@ -119,7 +119,7 @@ export class Show implements IShow {
     return {
       episodes: this._episodes?.length ?? 0,
       genres: this._genres,
-      imageUrl: this._image?.original || '',
+      imageUrl: this._image?.medium || '',
       isFavorite: true,
       minutes: minutes ?? 0,
       rating: this._rating?.average?.toString() ?? '0',

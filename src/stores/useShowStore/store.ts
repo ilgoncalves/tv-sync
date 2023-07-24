@@ -13,6 +13,8 @@ const scheduleService = new ScheduleService();
 const initialState: ShowStoreInitialState = {
   currentDetailedShow: null,
   homeShows: {},
+  homeLoading: false,
+  detailScreenLoading: false,
   originalHomeShows: {},
 };
 
@@ -21,7 +23,7 @@ export const useShowStore = create<ShowStoreState>()(
     ...initialState,
     getShowInfo: async showId => {
       try {
-        set({ currentDetailedShow: null });
+        set({ currentDetailedShow: null, detailScreenLoading: true });
 
         const [rawEpisodes, rawShow, rawCast] = await Promise.all([
           service.getEpisodeList(showId),
@@ -43,18 +45,25 @@ export const useShowStore = create<ShowStoreState>()(
         set({ currentDetailedShow: show });
       } catch (error) {
         console.log('Error occurred:', error);
+      } finally {
+        set({ detailScreenLoading: false });
       }
     },
     getAllShows: async () => {
       try {
+        set({ homeLoading: true });
         const rawFullSchedule = await scheduleService.getFullSchedule();
         const schedules = Schedule.fromApiResponse(rawFullSchedule);
 
         set({
           homeShows: schedules.showsByGenre,
           originalHomeShows: schedules.showsByGenre,
+          homeLoading: false,
         });
       } catch (error) {}
+    },
+    setDetailLoading: loadingState => {
+      set({ detailScreenLoading: loadingState });
     },
     searchHomeShow: async query => {
       set(state => {

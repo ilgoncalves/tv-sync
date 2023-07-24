@@ -5,14 +5,18 @@ import { FavoriteCard } from '~/components/molecules/FavoriteCard';
 import { Show } from '~/services/types';
 import { useNavigation } from '@react-navigation/native';
 import { EmptyDataComponent } from '~/components/atoms';
-import { TranslationsKeys } from '~/i18n';
+import { useShowStore } from '~/stores';
 
 const FavoritesList: FC<FavoritesListProps> = ({ data }) => {
   const { navigate } = useNavigation();
+  const { setDetailLoading } = useShowStore();
+
   const onPressItem = (item: Show) => {
     if (!item.id) {
       return;
     }
+
+    setDetailLoading(true);
     navigate('details', {
       screen: '/series-detail',
       params: {

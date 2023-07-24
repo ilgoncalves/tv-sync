@@ -6,6 +6,7 @@ import { FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Show } from '~/models';
 import { EmptyDataComponent } from '~/components/atoms';
+import { useShowStore } from '~/stores';
 
 const GenderList: FC<GenderListProps> = ({
   data,
@@ -13,8 +14,10 @@ const GenderList: FC<GenderListProps> = ({
   sectionTitle,
 }) => {
   const { navigate } = useNavigation();
+  const { setDetailLoading } = useShowStore();
   const gap = 12;
   const onPressItem = (item: Show) => {
+    setDetailLoading(true);
     navigate('details', {
       screen: '/series-detail',
       params: {

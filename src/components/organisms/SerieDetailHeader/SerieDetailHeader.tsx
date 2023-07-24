@@ -48,7 +48,7 @@ const SerieDetailHeader: FC<SerieDetailHeaderProps> = ({
         }}>
         <ImageBackground
           source={{ uri: serieInfo?.imageUrl }}
-          blurRadius={8}
+          blurRadius={2.2}
           imageStyle={[
             {
               opacity: 0.18,

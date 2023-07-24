@@ -4,6 +4,8 @@ type SearchTabScreen = 'serie-list' | 'people-search';
 export interface SearchStoreInitialState {
   searchedShows: Show[];
   searchedPeople: Person[];
+  searchLoadingPeople: boolean;
+  searchLoadingShows: boolean;
   currentTabScreen: SearchTabScreen;
   searchedQuery?: string;
 }

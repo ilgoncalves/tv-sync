@@ -9,11 +9,13 @@ import { useShowStore } from '~/stores';
 import uuid from 'react-native-uuid';
 import { GenderList } from '~/components/organisms';
 import { ScrollView } from 'react-native';
+import { LoadingContent } from '~/components/atoms';
 
 const Home: FC<HomeProps> = ({}) => {
   const { t } = useTranslation();
   const [searchText, setSearchText] = useState('');
-  const { getAllShows, homeShows, searchHomeShow } = useShowStore();
+  const { getAllShows, homeShows, searchHomeShow, homeLoading } =
+    useShowStore();
 
   useEffect(() => {
     getAllShows();
@@ -31,15 +33,20 @@ const Home: FC<HomeProps> = ({}) => {
         <Div py={4} px="md">
           <SearchBar value={searchText} onChangeText={setSearchText} />
         </Div>
-        <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 100 }}>
-          {Object.entries(homeShows).map(([key, value]) => (
-            <GenderList
-              key={`gender-${uuid.v4()}`}
-              flatListKey={`list-${uuid.v4()}`}
-              sectionTitle={key}
-              data={value}
-            />
-          ))}
+        <ScrollView
+          contentContainerStyle={[{ flexGrow: 1, paddingBottom: 100 }]}>
+          {homeLoading ? (
+            <LoadingContent />
+          ) : (
+            Object.entries(homeShows).map(([key, value]) => (
+              <GenderList
+                key={`gender-${uuid.v4()}`}
+                flatListKey={`list-${uuid.v4()}`}
+                sectionTitle={key}
+                data={value}
+              />
+            ))
+          )}
         </ScrollView>
       </Div>
     </MainTemplate>

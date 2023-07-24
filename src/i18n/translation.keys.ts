@@ -1,5 +1,6 @@
 // Pattern is ${PageName}${Description} = '${pagename}-description'
 export enum TranslationKeyEnum {
+  Loading = 'loading',
   LoginWelcome = 'login-welcome',
 
   //Home

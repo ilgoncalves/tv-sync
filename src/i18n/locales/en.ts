@@ -1,6 +1,7 @@
 import TranslationKeyEnum, { TranslationKey } from '../translation.keys';
 
 const translations: TranslationKey = {
+  [TranslationKeyEnum.Loading]: 'Loading...',
   [TranslationKeyEnum.LoginWelcome]: 'Welcome',
 
   [TranslationKeyEnum.HomeWelcome]: 'Welcome, {{name}}!',

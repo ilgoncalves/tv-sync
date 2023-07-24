@@ -1,14 +1,11 @@
 import { FC } from 'react';
-import { FlatList } from 'react-native';
-import { Div, Image, Text } from 'react-native-magnus';
-import uuid from 'react-native-uuid';
+import { Div, Text } from 'react-native-magnus';
 import { EpisodeBodyProps } from './types';
 import { getFontWeight } from '~/theme/components/Text';
 import { TranslationsKeys } from '~/i18n';
 import { useTranslation } from 'react-i18next';
-import { EmptyDataComponent } from '~/components/atoms';
 
-const EPISODE_BODY_HEIGHT = 220;
+const EPISODE_BODY_HEIGHT = 150;
 
 const EpisodeBody: FC<EpisodeBodyProps> = ({ episode }) => {
   const { t } = useTranslation();
@@ -32,25 +29,10 @@ const EpisodeBody: FC<EpisodeBodyProps> = ({ episode }) => {
           </Text>
         </Div>
 
-        <Text textAlign="justify" variant="medium" my="md">
+        <Text ellipsizeMode="tail" textAlign="justify" variant="medium" my="md">
           {episode.description}
         </Text>
-
-        <Text variant="medium" {...getFontWeight('bold')} mt="md">
-          {t(TranslationsKeys.EpisodeBodyImagesOfTheScenes)}
-        </Text>
       </Div>
-      <FlatList
-        data={episode.images}
-        horizontal
-        ListEmptyComponent={<EmptyDataComponent />}
-        contentContainerStyle={{ paddingHorizontal: 20 }}
-        ItemSeparatorComponent={() => <Div mx="sm" />}
-        keyExtractor={() => `key-${uuid.v4().toString()}`}
-        renderItem={({ item }) => (
-          <Image source={{ uri: item }} w={180} h={100} rounded="sm" />
-        )}
-      />
     </Div>
   );
 };

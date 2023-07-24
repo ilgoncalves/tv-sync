@@ -4,13 +4,14 @@ import { Dimensions, FlatList, FlatListProps } from 'react-native';
 import { SeriesCard } from '~/components/molecules';
 import {
   EmptyDataComponent,
+  LoadingContent,
   ResultsText,
   SeriesImage,
 } from '~/components/atoms';
 import { Div } from 'react-native-magnus';
 import { Show } from '~/models';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { useSearchStore } from '~/stores';
+import { useSearchStore, useShowStore } from '~/stores';
 
 const screenWidth = Dimensions.get('window').width - 40;
 const NUM_COLUMNS = 3;
@@ -20,9 +21,15 @@ const AVAILABLE_SPACE = screenWidth - (NUM_COLUMNS - 1) * GAP;
 const ITEM_SIZE = AVAILABLE_SPACE / NUM_COLUMNS;
 
 const SeriesList: FC<SeriesListProps> = ({}) => {
-  const { searchedShows, searchedQuery, setCurrentTabScreen } =
-    useSearchStore();
+  const {
+    searchedShows,
+    searchedQuery,
+    setCurrentTabScreen,
+    searchLoadingShows,
+  } = useSearchStore();
+  const { setDetailLoading } = useShowStore();
   const [isGridViewMode, setIsGridViewMode] = useState(false);
+
   const navigation = useNavigation();
   const isFocused = useIsFocused();
 
@@ -33,6 +40,7 @@ const SeriesList: FC<SeriesListProps> = ({}) => {
   }, [isFocused]);
 
   const onPressItem = (item: Show) => {
+    setDetailLoading(true);
     navigation.navigate('details', {
       screen: '/series-detail',
       params: {
@@ -72,7 +80,9 @@ const SeriesList: FC<SeriesListProps> = ({}) => {
         onFilterPress={() => setIsGridViewMode(prev => !prev)}
         text={searchedQuery}
       />
-      {isGridViewMode ? (
+      {searchLoadingShows ? (
+        <LoadingContent mb={100} />
+      ) : isGridViewMode ? (
         <FlatList
           {...defaultFlatlisProps}
           key={'grid-flatlist'}

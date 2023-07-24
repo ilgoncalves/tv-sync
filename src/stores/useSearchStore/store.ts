@@ -9,6 +9,8 @@ const service = new SearchService();
 const initialState: SearchStoreInitialState = {
   searchedShows: [],
   searchedPeople: [],
+  searchLoadingPeople: false,
+  searchLoadingShows: false,
   currentTabScreen: 'serie-list',
 };
 
@@ -17,6 +19,7 @@ export const useSearchStore = create<SearchStoreState>()(
     ...initialState,
     searchShows: async query => {
       try {
+        set({ searchLoadingShows: true });
         const rawResponse = await service.searchShows(query);
 
         const shows = rawResponse.map(response =>
@@ -26,10 +29,13 @@ export const useSearchStore = create<SearchStoreState>()(
         set({ searchedShows: shows, searchedQuery: query });
       } catch (error) {
         console.log('error', error);
+      } finally {
+        set({ searchLoadingShows: false });
       }
     },
     searchPeople: async query => {
       try {
+        set({ searchLoadingPeople: true });
         const rawPeopleResponse = await service.searchPeople(query);
 
         const people = rawPeopleResponse.map(el =>
@@ -39,6 +45,8 @@ export const useSearchStore = create<SearchStoreState>()(
         set({ searchedPeople: people });
       } catch (error) {
         console.log('searchPeople error', error);
+      } finally {
+        set({ searchLoadingPeople: false });
       }
     },
     setCurrentTabScreen: currentTab => {
