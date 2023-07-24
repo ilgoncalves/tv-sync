@@ -1,17 +1,28 @@
 # TvSync
 
 TvSync is a React Native application that allows users to browse, search, and keep track of their favorite TV series. The application uses the TVMaze API to fetch series data.
+
+The application is built using React Native and MVVM (Model-View-ViewModel) architecture for better separation of concerns and easier code maintainability. Zustand is used for state management, providing a lightweight and simpler solution for handling global state. For designing an expressive UI, the Magnus UI library is utilized, which offers a set of well-designed, customizable components. 
+
+
 ## Features
 
 - [x] Browse all series from the TVMaze API
 - [x] Search series by name
 - [x] View detailed information about a series and its episodes
 - [x] Set a series as a favorite
-- [ ] Browse favorite series in alphabetical order
+- [x] Remove series from favorites
+- [x] Browse favorite series and view detailed information about them
+- [x] Search for people involved in a series
+- [x] View detailed information about the person searched and series they have participated in
+- [x] Display next scheduled shows
+- [x] Subcategorize series per genre
+- [x] Support for multiple languages with i18n
+- [x] Cool animations for a better user experience
+- [x] Browse favorite series in alphabetical order
 - [x] Search for people involved in a series
 - [ ] View detailed information about person Searched and Series they have participated
 - [ ] Secure the application with a PIN number or fingerprint authentication (for supported phones)
-- [x] Support for multiple languages with i18n
 
 ## Getting Started
 
@@ -53,6 +64,9 @@ This is one way to run your app — you can also run it directly from within And
 ## Prototype
 
 Check the [Figma](https://www.figma.com/file/9suzZU0Ua9oGhaKkJHyq2C/TVSync?type=design&node-id=1:23&mode=design&t=klcIIp11l7kfrw8s-1) prototype.
+
+## APK
+The .apk file for the application can be found in this [Google Drive link](https://drive.google.com/drive/folders/1UsGqintxu76VmaGzFfmSe-HV-MLWTY8P?usp=drive_link).
 
 ## Testing
 
