@@ -114,6 +114,11 @@ export interface Cast {
   voice: boolean;
 }
 
+export interface Crew {
+  type: string;
+  person: Person;
+}
+
 export interface Character {
   id: number;
   url: string;

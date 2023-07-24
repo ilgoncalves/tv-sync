@@ -5,7 +5,13 @@ import {
   SerieInfo as ShowInfoUi,
 } from '~/components/organisms';
 import { Cast } from '../cast';
-import { Image, Rating, Show as ShowApi } from '~/services/types';
+import {
+  Crew,
+  Image,
+  Person as PersonApi,
+  Rating,
+  Show as ShowApi,
+} from '~/services/types';
 
 export interface IShowParams {
   id: number;
@@ -20,10 +26,17 @@ export interface IShowParams {
   episodes?: Episode[];
 }
 
+export type MostImportantCrewPerson = {
+  person: PersonApi;
+  responsibilities: string[];
+};
+
 export interface IShow extends IShowParams {
   addEpisodes(episodes: Episode[]): void;
   addCast(cast: Cast[]): void;
+  addCrew(crew: Crew[]): void;
   getSeasonAmount(): number;
+  getMostImportantCrewPerson(): MostImportantCrewPerson | undefined;
   toRaw(): Partial<ShowApi>;
   getEpisodesUiBySeason(currentSeason: number): EpisodeUi[];
   getShowInfoUi(): ShowInfoUi;

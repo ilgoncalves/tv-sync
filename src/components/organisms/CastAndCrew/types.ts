@@ -3,8 +3,8 @@ export interface CastMember {
   imageURL?: string;
 }
 export interface Director {
-  name: string;
-  responsibility: string;
+  name?: string;
+  responsibility?: string;
 }
 
 export interface CastAndCrewProps {

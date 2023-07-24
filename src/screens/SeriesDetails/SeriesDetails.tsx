@@ -59,8 +59,10 @@ const SeriesDetails: FC<SeriesDetailsProps> = ({}) => {
     synopsis: (
       <SeriesSynopsisTab
         director={{
-          name: 'Steve Knight',
-          responsibility: 'Screenwriter, Executive Producer, Creator ',
+          name: currentDetailedShow?.getMostImportantCrewPerson()?.person.name,
+          responsibility: currentDetailedShow
+            ?.getMostImportantCrewPerson()
+            ?.responsibilities.join(', '),
         }}
         synopsis={currentDetailedShow?.summary!}
         cast={currentDetailedShow?.getCast()!}

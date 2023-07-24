@@ -1,5 +1,5 @@
 import ApiService from './api.service';
-import { Cast, Episode, Show } from './types';
+import { Cast, Crew, Episode, Show } from './types';
 
 class ShowService extends ApiService {
   public constructor() {
@@ -41,7 +41,7 @@ class ShowService extends ApiService {
   }
 
   public getShowCrew(id: string) {
-    return this.get(`/shows/${id}/crew`);
+    return this.get<Crew[]>(`/shows/${id}/crew`);
   }
 
   public getShowAkas(id: string) {

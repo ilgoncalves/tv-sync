@@ -1,5 +1,5 @@
-import { Image, Rating, Show as ShowApi } from '~/services/types';
-import { IShow, IShowParams } from './interfaces';
+import { Crew, Image, Rating, Show as ShowApi } from '~/services/types';
+import { IShow, IShowParams, MostImportantCrewPerson } from './interfaces';
 import { Episode } from '../episode';
 import {
   CastMember as PersonInfoUi,
@@ -19,6 +19,7 @@ export class Show implements IShow {
   private _image?: Image;
   private _summary?: string;
 
+  private _crew?: Crew[];
   private _episodes?: Episode[];
   private _cast?: Cast[];
 
@@ -88,6 +89,10 @@ export class Show implements IShow {
     this._cast = cast;
   }
 
+  public addCrew(crew: Crew[]): void {
+    this._crew = crew;
+  }
+
   public getSeasonAmount() {
     if (!this._episodes || this._episodes?.length <= 0) {
       return 0;
@@ -124,6 +129,43 @@ export class Show implements IShow {
       minutes: minutes ?? 0,
       rating: this._rating?.average?.toString() ?? '0',
       title: this._name,
+    };
+  }
+
+  getMostImportantCrewPerson(): MostImportantCrewPerson | undefined {
+    if (!this._crew) {
+      return;
+    }
+
+    const crew = this._crew;
+
+    let personResponsibilities: Record<string, string[]> = {};
+
+    for (let member of crew) {
+      if (!personResponsibilities[member.person.id]) {
+        personResponsibilities[member.person.id] = [];
+      }
+      personResponsibilities[member.person.id].push(member.type);
+    }
+
+    let mostImportantPersonId = Object.keys(personResponsibilities).reduce(
+      (a, b) =>
+        personResponsibilities[a].length > personResponsibilities[b].length
+          ? a
+          : b,
+    );
+
+    let mostImportantPerson = crew.find(
+      member => member.person.id.toString() === mostImportantPersonId,
+    );
+
+    if (!mostImportantPerson) {
+      return;
+    }
+
+    return {
+      person: mostImportantPerson.person,
+      responsibilities: personResponsibilities[mostImportantPersonId],
     };
   }
 

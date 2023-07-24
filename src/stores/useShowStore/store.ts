@@ -25,10 +25,11 @@ export const useShowStore = create<ShowStoreState>()(
       try {
         set({ currentDetailedShow: null, detailScreenLoading: true });
 
-        const [rawEpisodes, rawShow, rawCast] = await Promise.all([
+        const [rawEpisodes, rawShow, rawCast, rawCrew] = await Promise.all([
           service.getEpisodeList(showId),
           service.getShowInformation(showId),
           service.getShowCast(showId),
+          service.getShowCrew(showId),
         ]);
 
         const show = Show.fromApiResponse(rawShow);
@@ -41,6 +42,7 @@ export const useShowStore = create<ShowStoreState>()(
 
         show.addEpisodes(showEpisodes);
         show.addCast(showCast);
+        show.addCrew(rawCrew);
 
         set({ currentDetailedShow: show });
       } catch (error) {

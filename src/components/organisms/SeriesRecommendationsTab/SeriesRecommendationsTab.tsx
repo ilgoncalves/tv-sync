@@ -1,11 +1,12 @@
 import { FC } from 'react';
-import { Div, Text } from 'react-native-magnus';
+import { Div } from 'react-native-magnus';
 import { SeriesRecommendationsTabProps } from './types';
+import { EmptyDataComponent } from '~/components/atoms';
 
 const SeriesRecommendationsTab: FC<SeriesRecommendationsTabProps> = ({}) => {
   return (
     <Div>
-      <Text>3</Text>
+      <EmptyDataComponent />
     </Div>
   );
 };
