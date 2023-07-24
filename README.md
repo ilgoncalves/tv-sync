@@ -1,7 +1,6 @@
 # TvSync
 
-TvSync is a React Native application that allows users to browse, search, and keep track of their favorite TV series. The application uses the TVMaze API to fetch series data and Firebase to handle offline data.
-
+TvSync is a React Native application that allows users to browse, search, and keep track of their favorite TV series. The application uses the TVMaze API to fetch series data.
 ## Features
 
 - [x] Browse all series from the TVMaze API
