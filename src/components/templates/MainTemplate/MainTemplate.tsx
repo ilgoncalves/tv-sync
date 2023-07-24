@@ -3,6 +3,7 @@ import { Div, StatusBar } from 'react-native-magnus';
 import LinearGradient from 'react-native-linear-gradient';
 import { Header, HeaderProps } from '~/components/molecules';
 import { colors } from '~/theme/colors';
+import { isAndroid } from '~/utils/helpers/isAndroid';
 
 interface MainTemplateProps extends HeaderProps {
   children: ReactNode;
@@ -23,8 +24,12 @@ const MainTemplate: FC<MainTemplateProps> = ({
         colors['background.linearBackgroundDark'],
       ]}
       style={{ flex: 1 }}>
-      <StatusBar barStyle="light-content" />
-      <Div flex={1}>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor={'transparent'}
+        translucent={true}
+      />
+      <Div flex={1} pt={isAndroid() ? 20 : 0}>
         {!hideHeader && (
           <Header
             centralizeTitle={centralizeTitle}

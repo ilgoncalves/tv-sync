@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { TranslationsKeys } from '~/i18n';
 import { getFontWeight } from '~/theme/components/Text';
 import uuid from 'react-native-uuid';
+import { imageSource } from '~/utils/helpers/imageSource';
 
 const CastAndCrew: FC<CastAndCrewProps> = ({ cast, director }) => {
   const { t } = useTranslation();
@@ -20,7 +21,7 @@ const CastAndCrew: FC<CastAndCrewProps> = ({ cast, director }) => {
         renderItem={({ item }) => (
           <Div w={80} alignItems="center" m="md">
             <Image
-              source={{ uri: item.imageURL }}
+              source={imageSource(item?.imageURL)}
               h={54}
               w={54}
               rounded="circle"

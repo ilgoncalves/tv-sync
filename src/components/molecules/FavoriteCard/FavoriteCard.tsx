@@ -3,6 +3,7 @@ import { Div, Image, Text } from 'react-native-magnus';
 import { FavoriteCardProps } from './types';
 import { IconSvg } from '~/components/atoms';
 import { TouchableOpacity } from 'react-native';
+import { imageSource } from '~/utils/helpers/imageSource';
 
 const FavoriteCard: FC<FavoriteCardProps> = ({
   serieName,
@@ -26,7 +27,7 @@ const FavoriteCard: FC<FavoriteCardProps> = ({
           borderWidth={1}
           rounded="md"
           borderColor="primary.pink"
-          source={{ uri: image }}
+          source={imageSource(image)}
           mr={20}
           alignSelf="center"
         />

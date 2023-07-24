@@ -18,6 +18,7 @@ const GenderList: FC<GenderListProps> = ({
   const gap = 12;
   const onPressItem = (item: Show) => {
     setDetailLoading(true);
+
     navigate('details', {
       screen: '/series-detail',
       params: {

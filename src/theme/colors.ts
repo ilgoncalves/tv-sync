@@ -32,6 +32,7 @@ const primary = {
 const secondary = {
   blueLight: '#272A3B',
   pinkLight: '#FDDAEB',
+  pinkLightBottomTab: '#FDDAEB1f',
   blueOpaque: '#313043',
   textLight: '#EAECF1',
   textOpaque: '#FEE6F2',

@@ -2,7 +2,6 @@ import { FC } from 'react';
 import Navigation from '~/navigation';
 import { Provider } from './providers';
 
-import 'react-native-gesture-handler';
 import { LoadingOverlay } from './components/organisms';
 
 const App: FC = () => {

@@ -74,7 +74,7 @@ const SeriesList: FC<SeriesListProps> = ({}) => {
   };
 
   return (
-    <Div shadow="lg" px={20} flex={1}>
+    <Div px={20} flex={1}>
       <ResultsText
         isFilterOn={isGridViewMode}
         onFilterPress={() => setIsGridViewMode(prev => !prev)}

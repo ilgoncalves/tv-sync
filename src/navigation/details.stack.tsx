@@ -15,12 +15,12 @@ const DetailsStackRoutes = () => {
     <DetailsStack.Navigator
       screenOptions={{
         headerShown: false,
-        animation: 'fade',
-        presentation: 'card',
-        gestureEnabled: false,
-        contentStyle: {
-          backgroundColor: 'transparent',
-        },
+        // animation: 'fade',
+        // presentation: 'card',
+        // gestureEnabled: false,
+        // contentStyle: {
+        //   backgroundColor: 'transparent',
+        // },
       }}>
       <DetailsStack.Screen name="/person-detail" component={PersonDetail} />
       <DetailsStack.Screen name="/series-detail" component={SeriesDetails} />

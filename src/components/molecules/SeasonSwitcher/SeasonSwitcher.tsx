@@ -36,7 +36,8 @@ const SeasonSwitcher: FC<SeasonSwitcherProps> = ({
       alignItems="center">
       <IconSvg
         containerStyle={{
-          px: 'lg',
+          p: 'lg',
+          bg: 'backdrop',
         }}
         size={10}
         onPress={handleDecrease}
@@ -55,7 +56,8 @@ const SeasonSwitcher: FC<SeasonSwitcherProps> = ({
 
       <IconSvg
         containerStyle={{
-          px: 'lg',
+          p: 'lg',
+          bg: 'backdrop',
         }}
         size={10}
         onPress={handleIncrease}

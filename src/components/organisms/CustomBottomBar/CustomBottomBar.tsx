@@ -1,21 +1,43 @@
 import React, { ElementType, FC } from 'react';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { BlurView } from '@react-native-community/blur';
 import uuid from 'react-native-uuid';
-import { colors } from '~/theme/colors';
+import { BlurView } from '@react-native-community/blur';
+import { Div } from 'react-native-magnus';
+import { isAndroid } from '~/utils/helpers/isAndroid';
+import { AndroidBlur } from '~/components/atoms';
 
 const CustomBottomBar: FC<BottomTabBarProps> = ({
   state,
   descriptors,
   navigation,
 }) => {
+  const renderBlur = () => {
+    return isAndroid() ? (
+      <AndroidBlur radius={16} />
+    ) : (
+      <BlurView
+        style={styles.blurContainer}
+        blurType="dark"
+        blurAmount={2}
+        reducedTransparencyFallbackColor="white"
+      />
+    );
+  };
   return (
-    <BlurView
-      style={styles.blurContainer}
-      blurType="dark"
-      blurAmount={2}
-      reducedTransparencyFallbackColor="white">
+    <Div
+      position="absolute"
+      bottom={30}
+      h={75}
+      right={0}
+      rounded={16}
+      flexDir="row"
+      justifyContent="space-around"
+      alignItems="center"
+      mx={20}
+      left={0}
+      bg={'secondary.pinkLightBottomTab'}>
+      {renderBlur()}
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
 
@@ -33,13 +55,6 @@ const CustomBottomBar: FC<BottomTabBarProps> = ({
           }
         };
 
-        const onLongPress = () => {
-          navigation.emit({
-            type: 'tabLongPress',
-            target: route.key,
-          });
-        };
-
         const Icon = options.tabBarIcon as ElementType;
 
         return (
@@ -47,10 +62,7 @@ const CustomBottomBar: FC<BottomTabBarProps> = ({
             key={`bottom-tab-${uuid.v4().toString()}`}
             accessibilityRole="button"
             accessibilityState={isFocused ? { selected: true } : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarTestID}
             onPress={onPress}
-            onLongPress={onLongPress}
             style={{
               padding: 16,
             }}>
@@ -58,23 +70,18 @@ const CustomBottomBar: FC<BottomTabBarProps> = ({
           </TouchableOpacity>
         );
       })}
-    </BlurView>
+    </Div>
   );
 };
 
 const styles = StyleSheet.create({
   blurContainer: {
     position: 'absolute',
-    bottom: 30,
+    bottom: 0,
+    top: 0,
     right: 0,
     left: 0,
-    backgroundColor: colors['secondary.pinkLight'] + '1F',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    height: 75,
     borderRadius: 16,
-    alignItems: 'center',
-    marginHorizontal: 20,
   },
 });
 

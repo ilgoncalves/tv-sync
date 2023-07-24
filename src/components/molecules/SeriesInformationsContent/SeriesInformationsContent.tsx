@@ -4,6 +4,7 @@ import { Div, Text, Image } from 'react-native-magnus';
 import { IconSvg } from '~/components/atoms';
 import { TranslationsKeys } from '~/i18n';
 import { useTranslation } from 'react-i18next';
+import { imageSource } from '~/utils/helpers/imageSource';
 
 const SeriesInformationsContent: FC<SeriesInformationsContentProps> = ({
   imageUrl,
@@ -20,7 +21,7 @@ const SeriesInformationsContent: FC<SeriesInformationsContentProps> = ({
   return (
     <Div row p="md">
       <Div pb={32} w="35%" justifyContent="center" alignItems="center">
-        <Image rounded="md" w="100%" h="100%" source={{ uri: imageUrl }} />
+        <Image rounded="md" w="100%" h="100%" source={imageSource(imageUrl)} />
       </Div>
       <Div w="65%">
         <Div alignItems="flex-end">

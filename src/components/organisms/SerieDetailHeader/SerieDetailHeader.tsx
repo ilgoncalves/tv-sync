@@ -9,6 +9,7 @@ import {
   OptionsTabNavigator,
   SeriesInformationsContent,
 } from '~/components/molecules';
+import { imageSource } from '~/utils/helpers/imageSource';
 
 const HEADER_HEIGHT = 220;
 const HEADER_MIN_HEIGHT = 36;
@@ -47,7 +48,7 @@ const SerieDetailHeader: FC<SerieDetailHeaderProps> = ({
           overflow: 'hidden',
         }}>
         <ImageBackground
-          source={{ uri: serieInfo?.imageUrl }}
+          source={imageSource(serieInfo?.imageUrl)}
           blurRadius={2.2}
           imageStyle={[
             {
