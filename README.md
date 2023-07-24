@@ -4,16 +4,15 @@ TvSync is a React Native application that allows users to browse, search, and ke
 
 ## Features
 
-- [ ] Browse all series from the TVMaze API
-- [ ] Search series by name
-- [ ] View detailed information about a series and its episodes
-- [ ] Set a series as a favorite
+- [x] Browse all series from the TVMaze API
+- [x] Search series by name
+- [x] View detailed information about a series and its episodes
+- [x] Set a series as a favorite
 - [ ] Browse favorite series in alphabetical order
-- [ ] Search for people involved in a series
+- [x] Search for people involved in a series
 - [ ] View detailed information about person Searched and Series they have participated
 - [ ] Secure the application with a PIN number or fingerprint authentication (for supported phones)
-- [ ] Support for multiple languages with i18n
-- [ ] Integration to see Tomatoe score (from [Rotten Tomatoes](https://www.rottentomatoes.com/))
+- [x] Support for multiple languages with i18n
 
 ## Getting Started
 
