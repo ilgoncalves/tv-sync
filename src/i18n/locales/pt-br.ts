@@ -26,6 +26,8 @@ const translations: TranslationKey = {
     'Você não tem favoritos ainda!',
   [TranslationKeyEnum.ListOfFavoritesTitle]: 'Lista de Favoritos',
 
+  [TranslationKeyEnum.EmptyDataNoResults]: 'Sem resultados',
+
   [TranslationKeyEnum.ModalOpps]: 'Opps!',
   [TranslationKeyEnum.ModalYes]: 'Sim',
   [TranslationKeyEnum.ModalNo]: 'Não',

@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { TranslationsKeys } from '~/i18n';
 import { getFontWeight } from '~/theme/components/Text';
 import uuid from 'react-native-uuid';
+import { EmptyDataComponent } from '~/components/atoms';
 
 const CastAndCrew: FC<CastAndCrewProps> = ({ cast, director }) => {
   const { t } = useTranslation();
@@ -16,6 +17,7 @@ const CastAndCrew: FC<CastAndCrewProps> = ({ cast, director }) => {
       </Text>
       <FlatList
         data={cast}
+        ListEmptyComponent={<EmptyDataComponent />}
         horizontal={true}
         renderItem={({ item }) => (
           <Div w={80} alignItems="center" m="md">

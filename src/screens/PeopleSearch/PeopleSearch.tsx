@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { PeopleSearchProps } from './types';
 import { Div } from 'react-native-magnus';
 import { FlatList } from 'react-native';
-import { ResultsText } from '~/components/atoms';
+import { EmptyDataComponent, ResultsText } from '~/components/atoms';
 import { PersonCard } from '~/components/molecules';
 import { useIsFocused } from '@react-navigation/native';
 import { useSearchStore } from '~/stores';
@@ -23,6 +23,7 @@ const PeopleSearch: FC<PeopleSearchProps> = ({}) => {
     <Div px={20} flex={1}>
       <ResultsText text={searchedQuery} />
       <FlatList
+        ListEmptyComponent={<EmptyDataComponent />}
         contentContainerStyle={{ paddingBottom: 100 }}
         keyExtractor={item => `${item.id}`}
         data={searchedPeople}

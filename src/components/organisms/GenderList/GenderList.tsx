@@ -5,6 +5,7 @@ import { SeriesImage } from '~/components/atoms/SeriesImage';
 import { FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Show } from '~/models';
+import { EmptyDataComponent } from '~/components/atoms';
 
 const GenderList: FC<GenderListProps> = ({
   data,
@@ -28,6 +29,7 @@ const GenderList: FC<GenderListProps> = ({
       </Text>
       <FlatList
         key={flatListKey}
+        ListEmptyComponent={<EmptyDataComponent />}
         data={data}
         renderItem={({ item }) => (
           <SeriesImage

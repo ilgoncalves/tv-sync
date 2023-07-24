@@ -4,6 +4,8 @@ import { FlatList } from 'react-native';
 import { FavoriteCard } from '~/components/molecules/FavoriteCard';
 import { Show } from '~/services/types';
 import { useNavigation } from '@react-navigation/native';
+import { EmptyDataComponent } from '~/components/atoms';
+import { TranslationsKeys } from '~/i18n';
 
 const FavoritesList: FC<FavoritesListProps> = ({ data }) => {
   const { navigate } = useNavigation();
@@ -32,6 +34,7 @@ const FavoritesList: FC<FavoritesListProps> = ({ data }) => {
     <FlatList
       keyExtractor={item => `${item.id}`}
       data={data}
+      ListEmptyComponent={<EmptyDataComponent />}
       contentContainerStyle={{ paddingTop: 20 }}
       showsVerticalScrollIndicator={false}
       renderItem={renderCard}

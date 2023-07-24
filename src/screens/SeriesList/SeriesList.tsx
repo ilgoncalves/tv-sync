@@ -2,7 +2,11 @@ import React, { FC, useEffect, useState } from 'react';
 import { SeriesListProps } from './types';
 import { Dimensions, FlatList, FlatListProps } from 'react-native';
 import { SeriesCard } from '~/components/molecules';
-import { ResultsText, SeriesImage } from '~/components/atoms';
+import {
+  EmptyDataComponent,
+  ResultsText,
+  SeriesImage,
+} from '~/components/atoms';
 import { Div } from 'react-native-magnus';
 import { Show } from '~/models';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
@@ -72,6 +76,7 @@ const SeriesList: FC<SeriesListProps> = ({}) => {
         <FlatList
           {...defaultFlatlisProps}
           key={'grid-flatlist'}
+          ListEmptyComponent={<EmptyDataComponent />}
           data={searchedShows}
           contentContainerStyle={{ gap: GAP, paddingBottom: 120 }}
           columnWrapperStyle={{ gap: GAP }}
@@ -84,6 +89,7 @@ const SeriesList: FC<SeriesListProps> = ({}) => {
           {...defaultFlatlisProps}
           key={'grid-card'}
           data={searchedShows}
+          ListEmptyComponent={<EmptyDataComponent />}
           renderItem={renderCard}
           keyExtractor={item => `${'card-item-'}${item.id}`}
         />

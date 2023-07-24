@@ -21,6 +21,7 @@ const translations: TranslationKey = {
   [TranslationKeyEnum.ModalRemoveOfFavoriteList]:
     'Do you want to remove this series from the favorites list?',
 
+  [TranslationKeyEnum.EmptyDataNoResults]: 'No Results',
   [TranslationKeyEnum.SearchTitle]: 'Search',
   [TranslationKeyEnum.SeriesDetailsTitle]: 'Series Details',
   [TranslationKeyEnum.SettingTitle]: 'Settings',

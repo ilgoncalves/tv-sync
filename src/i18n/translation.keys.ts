@@ -42,6 +42,8 @@ export enum TranslationKeyEnum {
   SetingsLanguageEnglish = 'settings-language-english',
   SetingsLanguagePortuguese = 'settings-language-portuguese',
 
+  EmptyDataNoResults = 'empty-data-no-results',
+
   //Modal
   ModalRemoveOfFavoriteList = 'modal-remove-of-favorite-list',
   ModalOpps = 'modal-opps',

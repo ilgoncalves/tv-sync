@@ -6,6 +6,7 @@ import { EpisodeBodyProps } from './types';
 import { getFontWeight } from '~/theme/components/Text';
 import { TranslationsKeys } from '~/i18n';
 import { useTranslation } from 'react-i18next';
+import { EmptyDataComponent } from '~/components/atoms';
 
 const EPISODE_BODY_HEIGHT = 220;
 
@@ -42,6 +43,7 @@ const EpisodeBody: FC<EpisodeBodyProps> = ({ episode }) => {
       <FlatList
         data={episode.images}
         horizontal
+        ListEmptyComponent={<EmptyDataComponent />}
         contentContainerStyle={{ paddingHorizontal: 20 }}
         ItemSeparatorComponent={() => <Div mx="sm" />}
         keyExtractor={() => `key-${uuid.v4().toString()}`}
