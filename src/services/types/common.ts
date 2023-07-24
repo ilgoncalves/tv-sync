@@ -92,6 +92,14 @@ export interface Episode {
   _links: EpisodeLinks;
 }
 
+export interface ScheduleEpisode extends Episode {
+  _embedded: ScheduleEmbedded;
+}
+
+export interface ScheduleEmbedded {
+  show: Show;
+}
+
 export interface EpisodeLinks {
   self: Self;
   show: Self;

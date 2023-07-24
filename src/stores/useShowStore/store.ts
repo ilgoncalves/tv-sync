@@ -2,14 +2,17 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { ShowStoreInitialState, ShowStoreState } from './types';
 
-import { ShowService } from '~/services';
+import { ScheduleService, ShowService } from '~/services';
 import { Episode, Show } from '~/models';
 import { Cast } from '~/models/cast';
+import { Schedule } from '~/models/schedule';
 
 const service = new ShowService();
+const scheduleService = new ScheduleService();
 
 const initialState: ShowStoreInitialState = {
   currentDetailedShow: null,
+  homeShows: {},
 };
 
 export const useShowStore = create<ShowStoreState>()(
@@ -40,6 +43,19 @@ export const useShowStore = create<ShowStoreState>()(
       } catch (error) {
         console.log('Error occurred:', error);
       }
+    },
+    getAllShows: async () => {
+      try {
+        const rawFullSchedule = await scheduleService.getWebSchedule();
+        const schedules = Schedule.fromApiResponse(rawFullSchedule);
+
+        console.log(
+          'rawFullSchedule',
+          JSON.stringify(schedules.showsByGenre, undefined, 2),
+        );
+
+        set({ homeShows: schedules.showsByGenre });
+      } catch (error) {}
     },
   })),
 );

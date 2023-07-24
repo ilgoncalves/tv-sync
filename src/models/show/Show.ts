@@ -64,6 +64,9 @@ export class Show implements IShow {
   get summary() {
     return this._summary;
   }
+  get episodes() {
+    return this._episodes;
+  }
 
   public addEpisodes(episodes: Episode[]) {
     this._episodes = episodes;

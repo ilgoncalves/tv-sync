@@ -53,7 +53,7 @@ class ShowService extends ApiService {
   }
 
   public getShowIndex(pageNum: number) {
-    return this.get('/shows', { params: { page: pageNum } });
+    return this.get<Show[]>('/shows', { params: { page: pageNum } });
   }
 }
 

@@ -6,21 +6,29 @@ import { FlatList } from 'react-native';
 
 const GenderList: FC<GenderListProps> = ({
   data,
-  onItemPress,
+  flatListKey,
   sectionTitle,
 }) => {
   const gap = 8;
 
+  console.log(data);
+
   return (
-    <Div my={16} justifyContent="center">
+    <Div my={8} justifyContent="center">
       <Text ml={12} mb={8} variant="headline4">
         {sectionTitle}
       </Text>
       <FlatList
+        key={flatListKey}
         data={data}
         renderItem={({ item }) => (
-          <SeriesImage image={item.image?.medium} onPress={onItemPress} />
+          <SeriesImage
+            size={150}
+            image={item.image?.medium}
+            onPress={() => {}}
+          />
         )}
+        keyExtractor={item => `${item.id}`}
         horizontal={true}
         contentContainerStyle={{ gap }}
         showsHorizontalScrollIndicator={false}
